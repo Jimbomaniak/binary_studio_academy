@@ -1,3 +1,10 @@
+.b-page {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 960px;
+  min-width: 230px;
+  background-color: #708090;
+}
 a {
   color: black;
   text-decoration: none;
@@ -5,76 +12,110 @@ a {
 a:hover {
   color: silver;
 }
-.header {
-  margin: 20px;
+.b-page__header {
+  background-color: white;
+  margin: 0 auto;
+  padding: 5px 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
-.header:after {
+.b-page__header::after {
   content: "";
   clear: both;
   display: table;
 }
 #logo {
-  display: inline-block;
   float: left;
   max-width: 200px;
+  margin-left: 25px;
 }
-.nav {
+.header__nav {
   float: right;
-  font-size: 30px;
+  font-size: 20px;
 }
-.nav-item{
+.nav__item{
   display: inline-block;
-  vertical-align: -50%;
+  vertical-align: -100%;
   padding-right: 20px;
 }
-.nav-item span{
+.nav__item span{
   margin-right: 10px;
 }
-.content {
+.b-page__wrapper {
   position: relative;
+  min-height: 120px;
+  background-color: #708090;
 }
-.nav-content {
+.wrapper__menu {
   position: absolute;
   height: 100%;
+  min-height: 120px;
   font-size: 20px;
   width: 120px;
 }
-.nav-content ul {
+.wrapper__menu ul {
   list-style-type: none;
   padding-left: 15%;
 }
-.nav-content ul li {
+.wrapper__menu ul li {
   margin: 10px 0;
+  padding: 15px;
 }
-.sections {
+.wrapper__content {
   margin-left: 120px;
-  height: 100%;
-}
-.content-top {
   display: flex;
+  flex-flow: wrap;
   height: 100%;
   justify-content: center;
 }
-.content-top article {
-  width: 200px;
+.content__data {
+  width: 250px;
   margin: 10px;
+  background-color: white;
+  text-align: center;
 }
-.content-bottom {
+.content__data img {
+  width: 100%;
+}
+.content__data p {
+  padding: 0 10px;
+  text-align: justify;
+  text-align-last: center;
+}
+.content__data:nth-child(2)::after {
+  content: '';
+  display: block;
+  border: 5px solid black;
+  margin-left: 20px;
+  width: 80%;
+}
+.b-page__footer {
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.footer__flex_container {
   display: flex;
-  height: 100%;
-  justify-content: center;
+  flex-flow: wrap;
+  flex-direction: row;
+  justify-content: space-around;
 }
-.content-bottom article {
-  width: 200px;
-  margin: 10px;
+.footer__menu {
+  list-style-type: none;
+  padding-left: 0;
 }
-.footer {
-  height: 50px;
-  background: silver;
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin: auto 20px;
+  font-size: 20px
 }
-
+.left__item, .right__item {
+  margin: 0 10px;
+}
 @media only screen and (max-width: 690px) {
-  .header {
+  .b-page__header {
     text-align: center;
   }
   #logo {
@@ -82,40 +123,49 @@ a:hover {
     float: none;
     margin: 0 auto;
   }
-  .nav {
+  .header__nav {
     float: none;
     display: block;
     margin: 0 auto;
   }
 }
 @media only screen and (max-width: 455px) {
-  .nav {
+  .header__nav {
     display: block;
     margin: 0 auto;
-
   }
-  .nav-item {
+  .nav__item {
     display: block;
     text-align: center;
     margin-top: 5px;
   }
-  .nav-item:not(:last-child) span {
+  .nav__item:not(:last-child) span {
     display: none;
   }
-  .nav-content {
+  .wrapper__menu {
     display: inline-block;
     position: relative;
     float: none;
     width: 100%;
+    min-height: 100%;
   }
-  .nav-content ul {
+  .wrapper__menu ul {
     padding-left: 0;
     text-align: center;
   }
-  .nav-content ul li{
-    display: inline-block;
+  .wrapper__menu ul li{
+    display: inline;
+    margin: auto 5px;
+    padding: 5px;
   }
-  .sections {
+  .wrapper__content {
     margin: 0;
+  }
+  .footer__bottom {
+    margin: auto 5px;
+    font-size: 15px;
+  }
+  .left__item, .right__item {
+    margin: 2px 2px;
   }
 }
