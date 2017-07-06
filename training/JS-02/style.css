@@ -1,0 +1,173 @@
+.b-page {
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 960px;
+  min-width: 230px;
+  background-color: #708090;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: silver;
+}
+.b-page__header {
+  background-color: white;
+  margin: 0 auto;
+  padding: 5px 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.b-page__header::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+#logo {
+  float: left;
+  max-width: 200px;
+  margin-left: 25px;
+}
+.header__nav {
+  float: right;
+  font-size: 20px;
+}
+.nav__item{
+  display: inline-block;
+  vertical-align: -100%;
+  padding-right: 20px;
+}
+.nav__item span{
+  margin-right: 10px;
+}
+.b-page__wrapper {
+  position: relative;
+  min-height: 120px;
+  background-color: #708090;
+}
+.wrapper__menu {
+  position: absolute;
+  height: 100%;
+  min-height: 120px;
+  font-size: 20px;
+  width: 120px;
+}
+.wrapper__menu ul {
+  list-style-type: none;
+  padding-left: 15%;
+}
+.wrapper__menu ul li {
+  margin: 10px 0;
+  padding: 15px;
+}
+.wrapper__content {
+  margin-left: 120px;
+  display: flex;
+  flex-flow: wrap;
+  height: 100%;
+  justify-content: center;
+}
+.content__data {
+  width: 250px;
+  margin: 10px;
+  background-color: white;
+  text-align: center;
+}
+.content__data img {
+  width: 100%;
+}
+.content__data p {
+  padding: 0 10px;
+  text-align: justify;
+  text-align-last: center;
+}
+.content__data:nth-child(2)::after {
+  content: '';
+  display: block;
+  border: 5px solid black;
+  margin-left: 20px;
+  width: 80%;
+}
+.b-page__footer {
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.footer__flex_container {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.footer__menu {
+  list-style-type: none;
+  padding-left: 0;
+}
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin: auto 20px;
+  font-size: 20px
+}
+.left__item, .right__item {
+  margin: 0 10px;
+}
+@media only screen and (max-width: 690px) {
+  .b-page__header {
+    text-align: center;
+  }
+  #logo {
+    display: block;
+    float: none;
+    margin: 0 auto;
+  }
+  .header__nav {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 455px) {
+  .header__nav {
+    display: block;
+    margin: 0 auto;
+  }
+  .nav__item {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+  }
+  .nav__item:not(:last-child) span {
+    display: none;
+  }
+  .wrapper__menu {
+    display: inline-block;
+    position: relative;
+    float: none;
+    width: 100%;
+    min-height: 100%;
+  }
+  .wrapper__menu ul {
+    padding-left: 0;
+    text-align: center;
+  }
+  .wrapper__menu ul li{
+    display: inline;
+    margin: auto 5px;
+    padding: 5px;
+  }
+  .wrapper__content {
+    margin: 0;
+  }
+  .footer__bottom {
+    margin: auto 5px;
+    font-size: 15px;
+  }
+  .left__item, .right__item {
+    margin: 2px 2px;
+  }
+}
