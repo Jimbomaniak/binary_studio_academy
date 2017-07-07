@@ -10,11 +10,22 @@
 </head>
 <body class="b-page">
   <header class="b-page__header">
-    <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQmV5cWZhQmNEZzg" id="logo" class="header__logo"/>
+    <div class="header__section">
+      <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQmV5cWZhQmNEZzg" id="logo" class="header__logo"/>-->
+      <img src="./logo.png" class="section__logo"/>
+      <div class="section__search">
+        <form>
+          <input id="search" class="search__input" type="text" placeholder="Search"/>
+          <label for="search" class="search__label"><span class="fa fa-search"></span></label>
+        </form>
+      </div>
+    </div>
     <nav class="header__nav">
-      <a class="nav__item" href="#"><span class="fa fa-sign-in"></span>Sign in</a>
-      <a class="nav__item" href="#"><span class="fa fa-address-book"></span>Contacts</a>
-      <a class="nav__item" href="#"><span class="fa fa-cogs"></span></a>
+      <ul>
+        <li class="menu__item"><a href="#">Home</a></li>
+        <li class="menu__item"><a href="#">Shop</a></li>
+        <li class="menu__item"><a href="#">Events</a></li>
+      </ul>
     </nav>
   </header>
   <div class="b-page__wrapper">
@@ -27,7 +38,7 @@
     </aside>
     <div class="wrapper__content">
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJNVBTdFpmNmM1cG8" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJNVBTdFpmNmM1cG8" alt="handmade"/>-->
         <p class="data_item">
           some handmade stuff
           and very large text that will force other data items to resize their height
@@ -35,59 +46,99 @@
         </p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJb2pDd3d5UUMxQ1k" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJb2pDd3d5UUMxQ1k" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJVVFMTjYtRHctNE0" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJVVFMTjYtRHctNE0" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJNUc2U3ZJNFFYbFk" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJNUc2U3ZJNFFYbFk" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJelpENWt2Y1Mzcms" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJelpENWt2Y1Mzcms" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJRGZRNVZXOFJmdzQ" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJRGZRNVZXOFJmdzQ" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJaWRzeHJaRHp5ZXc" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJaWRzeHJaRHp5ZXc" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJTFZrRVVLVkpRbmc" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJTFZrRVVLVkpRbmc" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJakIteWdvU095UXM" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJakIteWdvU095UXM" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQWMtZW9sVnJNTFE" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQWMtZW9sVnJNTFE" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQU5wOWFnYUNGNWs" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQU5wOWFnYUNGNWs" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJaUxnMUZfa3VwSGc" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJaUxnMUZfa3VwSGc" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJbEJteGZfck50SWM" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJbEJteGZfck50SWM" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJTk9vVGtpbU9nRFk" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJTk9vVGtpbU9nRFk" alt="handmade"/>-->
         <p class="data_item">some handmade stuff</p>
       </div>
       <div class="content__data">
-        <img src="https://drive.google.com/uc?id=0B7BShcz1QjFJU2xtQS1wMDJmdTg" alt="handmade"/>
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQWMtZW9sVnJNTFE" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQU5wOWFnYUNGNWs" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJaUxnMUZfa3VwSGc" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJbEJteGZfck50SWM" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJTk9vVGtpbU9nRFk" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQWMtZW9sVnJNTFE" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJQU5wOWFnYUNGNWs" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJaUxnMUZfa3VwSGc" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJbEJteGZfck50SWM" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJTk9vVGtpbU9nRFk" alt="handmade"/>-->
+        <p class="data_item">some handmade stuff</p>
+      </div>
+      <div class="content__data">
+        <!--<img src="https://drive.google.com/uc?id=0B7BShcz1QjFJU2xtQS1wMDJmdTg" alt="handmade"/>-->
         <p class="data_item">some handmade stuff and tall photo test</p>
       </div>
     </div>

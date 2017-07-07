@@ -8,14 +8,15 @@
   background-color: #708090;
 }
 a {
-  color: black;
+  color: #000;
   text-decoration: none;
 }
 a:hover {
-  color: silver;
+  color: #C0C0C0;
 }
 .b-page__header {
-  background-color: white;
+  background-color: #FFF;
+  height: auto;
   margin: 0 auto;
   padding: 5px 0;
   border-bottom-left-radius: 20px;
@@ -26,31 +27,44 @@ a:hover {
   clear: both;
   display: table;
 }
-#logo {
-  float: left;
-  max-width: 200px;
-  margin-left: 25px;
+.header__section {
 }
-.header__nav {
+.section__logo {
+  float: left;
+  width: 200px;
+  margin-left: 5%;
+}
+.section__search {
   float: right;
   font-size: 20px;
+  padding-right: 25px;
+  padding-top: 20px;
 }
-.nav__item{
+.search__label {
+  display: block;
+  margin-top: -25px;
+  margin-left: 10px;
+}
+.search__input {
+  padding: 5px 5px 5px 35px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px -1px;
+  outline: none;
+}
+.header__nav ul {
+  display: block;
+  list-style-type: none;
+}
+.header__nav ul li {
   display: inline-block;
-  vertical-align: -100%;
-  padding-right: 20px;
-}
-.nav__item span{
-  margin-right: 10px;
 }
 .b-page__wrapper {
-  position: relative;
+  display: flex;
   min-height: 120px;
   background-color: #708090;
 }
 .wrapper__menu {
-  position: absolute;
-  height: 100%;
   min-height: 120px;
   font-size: 20px;
   width: 120px;
@@ -64,7 +78,6 @@ a:hover {
   padding: 15px;
 }
 .wrapper__content {
-  margin-left: 120px;
   display: flex;
   flex-flow: wrap;
   height: 100%;
@@ -73,7 +86,7 @@ a:hover {
 .content__data {
   width: 250px;
   margin: 10px;
-  background-color: white;
+  background-color: #fff;
   text-align: center;
 }
 .content__data img {
@@ -87,12 +100,12 @@ a:hover {
 .content__data:nth-child(2)::after {
   content: '';
   display: block;
-  border: 5px solid black;
+  border: 5px solid #000;
   margin-left: 20px;
   width: 80%;
 }
 .b-page__footer {
-  background-color: white;
+  background-color: #FFF;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -119,22 +132,28 @@ a:hover {
 @media only screen and (max-width: 690px) {
   .b-page__header {
     text-align: center;
+    height: auto;
   }
-  #logo {
+  .section__logo {
     display: block;
     float: none;
     margin: 0 auto;
   }
-  .header__nav {
+  .section__search {
     float: none;
-    display: block;
-    margin: 0 auto;
+    margin: auto;
+  }
+  .search__label {
+    margin-left: -170px;
   }
 }
 @media only screen and (max-width: 455px) {
-  .header__nav {
+  .section__search {
     display: block;
     margin: 0 auto;
+  }
+  .section__search {
+    margin-left: 20px;
   }
   .nav__item {
     display: block;
