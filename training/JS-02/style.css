@@ -15,12 +15,13 @@ a:hover {
 .b-page__header {
   background-color: #FFF;
   position: fixed;
+  z-index: 1000;
   padding: 5px 0;
   width: 100%;
 }
 .header__section {
   display: flex;
-  max-width: 960px;
+  max-width: 1260px;
   margin: 0 auto;
   justify-content: space-between;
 }
@@ -59,17 +60,17 @@ a:hover {
   margin: 0 20px;
 }
 .b-page__wrapper {
-  max-width: 960px;
+  max-width: 1260px;
   min-width: 250px;
   margin: 0 auto;
   padding-top: 100px;
   background-color: #708090;
 }
 .wrapper__menu {
-  float: left;
   position: fixed;
   font-size: 20px;
   width: 140px;
+  height: 100%;
 }
 .wrapper__menu ul {
   list-style-type: none;
@@ -80,6 +81,29 @@ a:hover {
 }
 .menu__item i {
   padding-right: 10px;
+}
+.wrapper__landing {
+  display: flex;
+  flex-direction: column;
+  margin-left: 140px;
+  text-align: center;
+  height: 100vh;
+}
+.landing__text {
+  animation: landingSlideIn 3s ease-in;
+}
+.wrapper__landing p {
+  padding: 0 10%;
+  text-align: justify;
+  text-align-last: center;
+}
+.landing__popup {
+  animation-delay: -5s;
+  animation: landingPopUp 1s;
+}
+.landing__popup img {
+  padding-top: 20px;
+  max-width: 200px;
 }
 .wrapper__content {
   display: flex;
@@ -94,21 +118,19 @@ a:hover {
   margin: 10px;
   background-color: #fff;
   text-align: center;
+  overflow: hidden;
 }
 .content__data img {
-  width: 100%;
+  max-width: 100%;
+  transition: all 0.3s;
+}
+.content__data img:hover {
+  transform: scale(1.1);
 }
 .content__data p {
   padding: 0 10px;
   text-align: justify;
   text-align-last: center;
-}
-.content__data:nth-child(2)::after {
-  content: '';
-  display: block;
-  border: 5px solid #000;
-  margin-left: 20px;
-  width: 80%;
 }
 .b-page__footer {
   width: 100%;
@@ -116,7 +138,7 @@ a:hover {
 }
 .footer__flex_container {
   display: flex;
-  max-width: 960px;
+  max-width: 1260px;
   margin: 0 auto;
   flex-flow: wrap;
   flex-direction: row;
@@ -128,7 +150,7 @@ a:hover {
 }
 .footer__bottom {
   display: flex;
-  max-width: 960px;
+  max-width: 1260px;
   justify-content: space-around;
   padding-bottom: 10px;
   margin: 0 auto;
@@ -137,7 +159,28 @@ a:hover {
 .left__item, .right__item {
   margin: 0 5px;
 }
-@media only screen and (max-width: 1280px) {
+@keyframes landingSlideIn {
+  0% {
+    opacity: 0;
+    margin-top: -100px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+@keyframes landingPopUp {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media only screen and (max-width: 1260px) {
 
 }
 @media only screen and (max-width: 960px) {
