@@ -18,6 +18,7 @@ a:hover {
   z-index: 1000;
   padding: 5px 0;
   width: 100%;
+  min-height: 80px;
 }
 .header__section {
   display: flex;
@@ -89,13 +90,13 @@ a:hover {
   text-align: center;
   height: 100vh;
 }
-.landing__text {
-  animation: landingSlideIn 3s ease-in;
-}
 .wrapper__landing p {
   padding: 0 10%;
   text-align: justify;
   text-align-last: center;
+}
+.landing__text {
+  animation: landingSlideIn 3s ease-in;
 }
 .landing__popup {
   animation: landingPopUp 1s forwards;
@@ -183,28 +184,29 @@ a:hover {
     transform: scale(1);
   }
 }
-@media only screen and (max-width: 1260px) {
-
-}
 @media only screen and (max-width: 960px) {
-  .b-page__header {
-    text-align: center;
-    height: auto;
+  .content__data {
+    width: 350px;
+    min-width: 350px;
+    margin: 20px;
   }
-  .section__logo {
-    display: block;
-    float: none;
-    margin: 0 auto;
-  }
-  .section__search {
-    float: none;
-    margin: auto;
-  }
-  .search__label {
-    margin-left: -170px;
+  .content__data img:hover {
+    transform: scale(1.05);
   }
 }
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 740px) {
+  .content__data {
+    width: 275px;
+    min-width: 275px;
+    margin: 15px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .content__data {
+    width: 250px;
+    min-width: 250px;
+    margin: 10px 10px 10px 50px;
+  }
   .section__search {
     display: block;
     margin: 0 auto;
@@ -217,24 +219,12 @@ a:hover {
     text-align: center;
     margin-top: 5px;
   }
-  .nav__item:not(:last-child) span {
-    display: none;
-  }
   .wrapper__menu {
-    display: inline-block;
-    position: relative;
-    float: none;
-    width: 100%;
+    text-align: center;
     min-height: 100%;
   }
-  .wrapper__menu ul {
-    padding-left: 0;
-    text-align: center;
-  }
-  .wrapper__menu ul li{
-    display: inline;
-    margin: auto 5px;
-    padding: 5px;
+  .menu__item span {
+    display: none;
   }
   .wrapper__content {
     margin: 0;
