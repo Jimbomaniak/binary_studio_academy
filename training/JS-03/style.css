@@ -1,0 +1,153 @@
+.b-page {
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #708090;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+a:hover {
+  color: #C0C0C0;
+}
+.b-page__header {
+  background-color: #FFF;
+  position: fixed;
+  z-index: 1000;
+  padding: 5px 0;
+  width: 100%;
+  min-height: 80px;
+}
+.header__section {
+  display: flex;
+  max-width: 1260px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.section__logo {
+  max-height: 80px;
+  margin-left: 5%;
+}
+.section__text {
+  padding: 5px;
+  animation: landingSlideIn 1s ease-in;
+}
+.section__search {
+  margin: auto 0;
+  padding-right: 15px;
+  font-size: 17px;
+}
+.search__label {
+  display: block;
+  margin-top: -25px;
+  margin-left: 10px;
+}
+.search__input {
+  font-size: inherit;
+  padding: 5px 5px 5px 40px;
+  width: 300px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px -1px;
+  outline: none;
+}
+.b-page__wrapper {
+  max-width: 1260px;
+  min-width: 250px;
+  margin: 0 auto;
+  padding-top: 100px;
+  background-color: #708090;
+}
+.wrapper__content {
+  display: flex;
+  flex-direction: column;
+}
+.content__data {
+  margin: 10px;
+  background-color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+.content__data img {
+  padding: 15px;
+  max-width: 100%;
+  transition: all 0.3s;
+}
+.content__data img:hover {
+  transform: scale(1.1);
+}
+.content__data p {
+  padding: 0 10px;
+  text-align: justify;
+  text-align-last: center;
+}
+.b-page__footer {
+  width: 100%;
+  background-color: #FFF;
+}
+.footer__container {
+  display: flex;
+  max-width: 1260px;
+  justify-content: space-around;
+  padding: 30px;
+  margin: 20px auto;
+  font-size: 20px
+}
+.left__item, .right__item {
+  margin: 0 5px;
+}
+@keyframes landingSlideIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media only screen and (max-width: 960px) {}
+@media only screen and (max-width: 740px) {
+  .section__logo {
+    display: none;
+  }
+  .section__text {
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .header__section {
+    display: block;
+  }
+  .section__text {
+    font-size: 12px;
+    text-align: center;
+    padding: 0;
+  }
+  .section__search {
+    width: 100%;
+    text-align: center;
+    margin: 5px 10px;
+  }
+  .search__input {
+    font-size: 12px;
+    padding-left: 10px;
+    width: 60%;
+  }
+  .search__label {
+    display: none;
+  }
+  .wrapper__content {
+    margin-top: auto;
+  }
+  .b-page__footer {
+    min-width: 250px;
+  }
+  .footer__container {
+    justify-content: space-between;
+    font-size: 16px;
+  }
+  .left__item, .right__item {
+    margin: 1px;
+  }
+}
