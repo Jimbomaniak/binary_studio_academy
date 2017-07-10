@@ -29,13 +29,13 @@ a:hover {
   max-width: 200px;
   margin-left: 25px;
 }
-.section__search {
+.header__nav {
   float: right;
+  margin: 25px;
   font-size: 20px;
 }
 .nav__item{
   display: inline-block;
-  vertical-align: -100%;
   padding-right: 20px;
 }
 .nav__item span{
@@ -123,16 +123,15 @@ a:hover {
     float: none;
     margin: 0 auto;
   }
-  .section__search {
+  .header__nav {
     float: none;
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
   }
 }
 @media only screen and (max-width: 455px) {
-  .section__search {
-    display: block;
-    margin: 0 auto;
+  .header__nav {
+    flex-direction: column;
   }
   .nav__item {
     display: block;
