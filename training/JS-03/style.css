@@ -80,9 +80,6 @@ a:hover {
 .data__image:hover {
   transform: scale(1.1);
 }
-.data__title {
-
-}
 .data__text {
   padding: 0 10px;
   text-align: justify;
@@ -187,7 +184,8 @@ a:hover {
   }
   .data__tags_tag {
     display: list-item;
-    margin: 2px auto;
+    margin: 2px;
+    justify-content: center;
   }
   .data_created {
     text-align: center;
