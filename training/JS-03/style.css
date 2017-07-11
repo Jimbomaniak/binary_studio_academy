@@ -54,6 +54,7 @@ a:hover {
   outline: none;
 }
 .b-page__wrapper {
+  min-height: calc(100vh - 165px);
   max-width: 1260px;
   min-width: 250px;
   margin: 0 auto;
@@ -65,23 +66,53 @@ a:hover {
   flex-direction: column;
 }
 .content__data {
+  position: relative;
   margin: 10px;
   background-color: #fff;
-  text-align: center;
-  overflow: hidden;
+  display: inline-block;
 }
-.content__data img {
+.data__image {
+  float: left;
   padding: 15px;
-  max-width: 100%;
+  max-width: 150px;
   transition: all 0.3s;
 }
-.content__data img:hover {
+.data__image:hover {
   transform: scale(1.1);
 }
-.content__data p {
+.data__title {
+
+}
+.data__text {
   padding: 0 10px;
   text-align: justify;
-  text-align-last: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.data__tags {
+  display: flex;
+  -webkit-padding-start: 10px;
+  list-style-type: none;
+}
+.data__tags_tag {
+  background: rgba(112, 128, 144, .6) ;
+  font-size: 15px;
+  padding: 3px;
+  margin-right: 5px;
+  border: .01rem solid #808080;
+  border-radius: 10px;
+}
+.data__created {
+  font-size: 12px;
+  padding-left: 10px;
+}
+.data__delete {
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+  right: 0;
+  margin: 5px;
 }
 .b-page__footer {
   width: 100%;
@@ -91,8 +122,8 @@ a:hover {
   display: flex;
   max-width: 1260px;
   justify-content: space-around;
-  padding: 30px;
-  margin: 20px auto;
+  padding: 20px;
+  margin: 0 auto;
   font-size: 20px
 }
 .left__item, .right__item {
@@ -140,14 +171,33 @@ a:hover {
   .wrapper__content {
     margin-top: auto;
   }
-  .b-page__footer {
-    min-width: 250px;
-  }
   .footer__container {
     justify-content: space-between;
-    font-size: 16px;
   }
   .left__item, .right__item {
     margin: 1px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .data__image {
+    display: none;
+  }
+  .data__title {
+    text-align: center;
+  }
+  .data__tags_tag {
+    display: list-item;
+    margin: 2px auto;
+  }
+  .data_created {
+    text-align: center;
+  }
+  .b-page__footer {
+    background-color: #FFF;
+    min-height: 65px;
+    min-width: 250px;
+  }
+  .footer__container {
+    font-size: 16px;
   }
 }
