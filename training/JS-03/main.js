@@ -4,10 +4,7 @@ const WRAPPER_CONTENT = document.getElementsByClassName('wrapper__content')[0];
 const HEADER_TAGS_SECTION = document.getElementsByClassName('header__tags-section')[0];
 
 let tagsSet = new Set();
-let savedTags = localStorage.getItem('tags');
-if(savedTags){
-    savedTags = savedTags.split(',');
-}
+let savedTags = checkSavedTags();
 
 let fetchData = fetch('https://api.myjson.com/bins/152f9j')
     .then((response) => {
@@ -53,7 +50,7 @@ function fetchTagsList(tags) {
         tag.classList.add('tags-list__tag');
         tag.innerHTML = headerTag;
         let selectedClass = 'tags-list__tag_selected';
-        if(savedTags && savedTags.includes(headerTag)){
+        if(savedTags.includes(headerTag)){
             tag.classList.add(selectedClass);
         }
         tag.addEventListener('click', () => {
@@ -114,4 +111,13 @@ function createPost(data) {
     dataWrapper.appendChild(postDelete);
 
     WRAPPER_CONTENT.appendChild(dataWrapper);
+}
+
+function checkSavedTags(){
+    let localTags = localStorage.getItem('tags');
+    if(localTags){
+        return localTags.split(',');
+    } else {
+        return [];
+    }
 }
