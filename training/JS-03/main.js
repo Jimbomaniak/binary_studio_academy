@@ -1,8 +1,13 @@
 'use strict';
 
 const WRAPPER_CONTENT = document.getElementsByClassName('wrapper__content')[0];
-let tagsList = new Set();
-let localTags = localStorage.getItem('tags');
+const HEADER_TAGS_SECTION = document.getElementsByClassName('header__tags-section')[0];
+
+let tagsSet = new Set();
+let savedTags = localStorage.getItem('tags');
+if(savedTags){
+    savedTags = savedTags.split(',');
+}
 
 let fetchData = fetch('https://api.myjson.com/bins/152f9j')
     .then((response) => {
@@ -16,11 +21,54 @@ fetchData.then((posts) => {
     posts.data.sort((x, y) => {
         return new Date(x['createdAt']) - new Date(y['createdAt']);
     }).reverse();
+
     for(let post of posts.data){
-        tagsList.add(...post['tags']);
+        post['tags'].forEach(tagsSet.add, tagsSet);
         createPost(post);
     }
+
+    fetchTagsList(tagsSet);
 });
+
+function fetchTagsList(tags) {
+    let headerTags = document.createElement('ul');
+    headerTags.classList.add('tags-section__tags-list');
+
+    let applyTags = document.createElement('li');
+    applyTags.classList.add('tags-list__apply');
+    applyTags.addEventListener('click', () => {
+        let selected = [].map.call(
+            document.getElementsByClassName('tags-list__tag_selected'), (liItem)=>liItem.innerHTML);
+        localStorage.setItem('tags', selected);
+    });
+
+    let applyIcon = document.createElement('span');
+    applyIcon.classList.add('fa', 'fa-sort-amount-desc');
+
+    applyTags.appendChild(applyIcon);
+    headerTags.appendChild(applyTags);
+
+    for(let headerTag of tags){
+        let tag = document.createElement('li');
+        tag.classList.add('tags-list__tag');
+        tag.innerHTML = headerTag;
+        let selectedClass = 'tags-list__tag_selected';
+        if(savedTags && savedTags.includes(headerTag)){
+            tag.classList.add(selectedClass);
+        }
+        tag.addEventListener('click', () => {
+            if(tag.classList.contains(selectedClass)){
+                tag.classList.remove(selectedClass);
+            } else {
+                tag.classList.add(selectedClass);
+
+            }
+        });
+
+        headerTags.appendChild(tag);
+    }
+    HEADER_TAGS_SECTION.appendChild(headerTags);
+}
 
 function createPost(data) {
     let dataWrapper = document.createElement('div');
@@ -41,11 +89,11 @@ function createPost(data) {
 
     let postTags = document.createElement('ul');
     postTags.classList.add('data__tags');
-    for(let tag of data['tags']){
-        let liTag = document.createElement('li');
-        liTag.classList.add('data__tags_tag');
-        liTag.innerHTML = tag;
-        postTags.appendChild(liTag);
+    for(let postTag of data['tags']){
+        let tag = document.createElement('li');
+        tag.classList.add('tags__tag');
+        tag.innerHTML = postTag;
+        postTags.appendChild(tag);
     }
 
     let postCreated = document.createElement('p');
