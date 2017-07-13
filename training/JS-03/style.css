@@ -187,7 +187,7 @@ a:hover {
     margin-bottom: 10px;
   }
   .wrapper__content {
-    margin-top: 60px;
+    margin-top: 80px;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -212,9 +212,6 @@ a:hover {
   .search__label {
     display: none;
   }
-  .wrapper__content {
-    margin-top: auto;
-  }
   .footer__container {
     justify-content: space-between;
   }
@@ -234,8 +231,8 @@ a:hover {
     margin: 2px;
     justify-content: center;
   }
-  .data_created {
-    text-align: center;
+  .wrapper__content {
+    margin-top: 100px;
   }
   .b-page__footer {
     background-color: #FFF;
