@@ -1,17 +1,20 @@
 .b-page {
-  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
   font-family: 'Ubuntu', sans-serif;
   margin: 0 auto;
   padding: 0;
   background-color: #708090;
 }
+
 a {
   color: #000;
   text-decoration: none;
 }
+
 a:hover {
   color: #C0C0C0;
 }
+
 .b-page__header {
   background-color: #FFF;
   position: fixed;
@@ -20,30 +23,36 @@ a:hover {
   width: 100%;
   min-height: 80px;
 }
+
 .header__section {
   display: flex;
   max-width: 1260px;
   margin: 0 auto;
   justify-content: space-between;
 }
+
 .section__logo {
   max-height: 80px;
   margin-left: 5%;
 }
+
 .section__text {
   padding: 5px;
   animation: landingSlideIn 1s ease-in;
 }
+
 .section__search {
   margin: auto 0;
   padding-right: 15px;
   font-size: 17px;
 }
+
 .search__label {
   display: block;
   margin-top: -25px;
   margin-left: 10px;
 }
+
 .search__input {
   font-size: inherit;
   padding: 5px 5px 5px 40px;
@@ -53,12 +62,14 @@ a:hover {
   box-shadow: 1px 1px 10px -1px;
   outline: none;
 }
+
 .header__tags-section:before {
   content: '';
   display: block;
   border-top: 1px solid black;
   width: 100%;
 }
+
 .tags-section__tags-list {
   display: flex;
   flex-wrap: wrap;
@@ -67,6 +78,7 @@ a:hover {
   justify-content: center;
   list-style-type: none;
 }
+
 .tags-list__tag {
   background: rgba(112, 128, 144, .5);
   font-size: 15px;
@@ -75,20 +87,21 @@ a:hover {
   border: .01rem solid #808080;
   border-radius: 10px;
 }
+
 .tags-list__tag:hover {
   transition: .3s;
   background-color: rgba(112, 128, 144, .25);
   cursor: pointer;
 }
-.tags-list__tag_selected, .tags-list__tag_selected:hover {
-  background-color: rgba(112, 128, 144, 1);
-}
+
 .tags-list__apply {
   margin: auto 5px;
 }
+
 .tags-list__apply {
   cursor: pointer;
 }
+
 .b-page__wrapper {
   min-height: calc(100vh - 165px);
   max-width: 1260px;
@@ -97,25 +110,34 @@ a:hover {
   padding-top: 120px;
   background-color: #708090;
 }
+
 .wrapper__content {
   display: flex;
   flex-direction: column;
 }
+
+.content__filler {
+  text-align: center;
+}
+
 .content__data {
   position: relative;
   margin: 10px;
   background-color: #fff;
   display: inline-block;
 }
+
 .data__image {
   float: left;
   padding: 15px;
   max-width: 150px;
   transition: all 0.3s;
 }
+
 .data__image:hover {
   transform: scale(1.1);
 }
+
 .data__text {
   padding: 0 10px;
   text-align: justify;
@@ -123,11 +145,13 @@ a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .data__tags {
   display: flex;
   -webkit-padding-start: 10px;
   list-style-type: none;
 }
+
 .tags__tag {
   background: rgba(112, 128, 144, .6);
   font-size: 15px;
@@ -136,15 +160,22 @@ a:hover {
   border: .01rem solid #808080;
   border-radius: 10px;
 }
+
 .tags__tag:hover {
   transition: .5s;
   background-color: rgba(112, 128, 144, .3);
   cursor: pointer;
 }
+
+.tag_selected, .tags-list__tag_selected:hover {
+  background-color: rgba(112, 128, 144, 1);
+}
+
 .data__created {
   font-size: 12px;
   padding-left: 10px;
 }
+
 .data__delete {
   position: absolute;
   font-size: 15px;
@@ -152,10 +183,12 @@ a:hover {
   right: 0;
   margin: 5px;
 }
+
 .b-page__footer {
   width: 100%;
   background-color: #FFF;
 }
+
 .footer__container {
   display: flex;
   max-width: 1260px;
@@ -164,9 +197,11 @@ a:hover {
   margin: 0 auto;
   font-size: 20px
 }
+
 .left__item, .right__item {
   margin: 0 5px;
 }
+
 @keyframes landingSlideIn {
   0% {
     opacity: 0;
@@ -175,70 +210,86 @@ a:hover {
     opacity: 1;
   }
 }
-@media only screen and (max-width: 960px) {}
+
 @media only screen and (max-width: 740px) {
   .section__logo {
     display: none;
   }
+
   .section__text {
     margin: 0 auto;
   }
+
   .tags-list__tag {
     margin-bottom: 10px;
   }
+
   .wrapper__content {
     margin-top: 80px;
   }
 }
+
 @media only screen and (max-width: 500px) {
   .header__section {
     display: block;
   }
+
   .section__text {
     font-size: 12px;
     text-align: center;
     padding: 0;
   }
+
   .section__search {
     width: 100%;
     text-align: center;
     margin: 5px 10px;
   }
+
   .search__input {
     font-size: 12px;
     padding-left: 10px;
     width: 60%;
   }
+
   .search__label {
     display: none;
   }
+
   .footer__container {
     justify-content: space-between;
   }
+
   .left__item, .right__item {
     margin: 1px;
   }
 }
+
 @media only screen and (max-width: 400px) {
   .data__image {
     display: none;
   }
+
   .data__title {
     text-align: center;
   }
+
   .tags__tag {
     display: list-item;
     margin: 2px;
     justify-content: center;
   }
+
   .wrapper__content {
     margin-top: 100px;
   }
+
   .b-page__footer {
     background-color: #FFF;
     min-height: 65px;
     min-width: 250px;
   }
+
   .footer__container {
     font-size: 16px;
   }
