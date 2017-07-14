@@ -85,13 +85,17 @@ a:hover {
   padding: 3px;
   margin: 0 20px;
   border: .01rem solid #808080;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 .tags-list__tag:hover {
   transition: .3s;
-  background-color: rgba(112, 128, 144, .25);
+  background-color: rgba(112, 128, 144, .3);
   cursor: pointer;
+}
+
+.tags-list__tag_selected, .tags-list__tag_selected:hover {
+  background-color: rgba(112, 128, 144, 1);
 }
 
 .tags-list__apply {
@@ -158,7 +162,7 @@ a:hover {
   padding: 3px;
   margin-right: 5px;
   border: .01rem solid #808080;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 .tags__tag:hover {
@@ -167,7 +171,7 @@ a:hover {
   cursor: pointer;
 }
 
-.tag_selected, .tags-list__tag_selected:hover {
+.tag_selected, .tag_selected:hover {
   background-color: rgba(112, 128, 144, 1);
 }
 

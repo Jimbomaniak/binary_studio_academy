@@ -5,7 +5,8 @@ const HEADER_TAGS_SECTION = document.getElementsByClassName('header__tags-sectio
 const FOOTER = document.getElementsByClassName('b-page__footer')[0];
 const SEARCH = document.getElementsByClassName('search__input')[0];
 const FORM = document.getElementsByClassName('search__form');
-const TAG_SELECTED_CLASS = 'tag_selected';
+const TAG_SELECTED = 'tag_selected';
+const TAG_LIST_SELECTED = 'tags-list__tag_selected';
 
 FORM.onsubmit = (e) => e.preventDefault();
 
@@ -111,7 +112,7 @@ function fetchTagsList(tags) {
     let applyTags = document.createElement('li');
     applyTags.classList.add('tags-list__apply');
     applyTags.addEventListener('click', () => {
-        let selectedTags = document.getElementsByClassName(TAG_SELECTED_CLASS);
+        let selectedTags = document.getElementsByClassName(TAG_LIST_SELECTED);
         let formattedTags = [].map.call(selectedTags, (liItem) => liItem.innerHTML);
         localStorage.setItem('tags', formattedTags);
         location.reload();
@@ -128,13 +129,13 @@ function fetchTagsList(tags) {
         tag.classList.add('tags-list__tag');
         tag.innerHTML = headerTag;
         if (savedTags.has(headerTag)) {
-            tag.classList.add(TAG_SELECTED_CLASS);
+            tag.classList.add(TAG_LIST_SELECTED);
         }
         tag.addEventListener('click', () => {
-            if (tag.classList.contains(TAG_SELECTED_CLASS)) {
-                tag.classList.remove(TAG_SELECTED_CLASS);
+            if (tag.classList.contains(TAG_LIST_SELECTED)) {
+                tag.classList.remove(TAG_LIST_SELECTED);
             } else {
-                tag.classList.add(TAG_SELECTED_CLASS);
+                tag.classList.add(TAG_LIST_SELECTED);
             }
         });
 
@@ -166,7 +167,7 @@ function createPost(post) {
         let tag = document.createElement('li');
         tag.classList.add('tags__tag');
         if (savedTags.has(postTag)) {
-            tag.classList.add(TAG_SELECTED_CLASS);
+            tag.classList.add(TAG_SELECTED);
         }
         tag.innerHTML = postTag;
         tag.addEventListener('click', () => {
