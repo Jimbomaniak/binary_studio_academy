@@ -1,0 +1,15 @@
+{
+  "name": "messapp",
+  "version": "1.0.0",
+  "description": "BSA task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bsa",
+    "chat"
+  ],
+  "author": "Oleg Chulanovskyi <skyrocker2013@gmail.com>",
+  "license": "ISC"
+}
