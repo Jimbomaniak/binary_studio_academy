@@ -28,7 +28,12 @@ function createUser(name) {
 
 function deleteUser(user_id) {
     let users = db.get().collection('users');
-    users.deleteOne({'id': parseInt(user_id)}).then();
+    users.deleteOne({'user_id': parseInt(user_id)}).then();
+}
+
+function updateUser(user_id) {
+    let user = db.get().collection('users').find({'user_id': user_id});
+    console.log(user);
 }
 
 module.exports = {
@@ -37,5 +42,5 @@ module.exports = {
     findAllUsers: findAllUsers,
     createUser: createUser,
     deleteUser: deleteUser,
-
+    updateUser: updateUser,
 };

@@ -34,6 +34,10 @@ router.delete('/delete/:id', (req, res) => {
     res.send('Maybe deleted...');
 });
 
+router.patch('/update/:id', (req, res) => {
+    userService.updateUser(parseInt(req.params.id), req.body);
+});
+
 module.exports = router;
 
 
