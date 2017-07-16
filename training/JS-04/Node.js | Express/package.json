@@ -2,7 +2,7 @@
   "name": "messapp",
   "version": "1.0.0",
   "description": "BSA task",
-  "main": "index.js",
+  "main": "messapp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +11,10 @@
     "chat"
   ],
   "author": "Oleg Chulanovskyi <skyrocker2013@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.30"
+  }
 }
