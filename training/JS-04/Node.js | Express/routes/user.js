@@ -1,16 +1,37 @@
 const router = require('express').Router();
 const userService = require('../services/user');
 
+router.get('/', (req, res) => {
+    let users = userService.findAllUsers();
+    users.then((allUsers) => {
+        res.send(allUsers);
+    }).catch((err) => {
+        console.log(err);
+        res.send('Something went wrong... See the console.log');
+    })
+});
+
 router.get('/:id', (req, res) => {
-    console.log(req.params.id);
     let user = userService.findUser(req.params.id);
     user.then((founded) => {
-        console.log(founded);
         res.send(founded);
     }).catch((err) => {
         console.log(err);
-        res.status(404).send('Something went wrong... See the console.log');
+        res.send('Something went wrong... See the console.log');
     });
+});
+
+router.post('/create', (req, res) => {
+    console.log('Creating...');
+    console.log(req.body);
+    // userService.createUser(req.body);
+    res.send('Maybe created...');
+});
+
+router.delete('/delete/:id', (req, res) => {
+    console.log(`Deleting ${req.params.id}`);
+    userService.deleteUser(req.params.id);
+    res.send('Maybe deleted...');
 });
 
 module.exports = router;
