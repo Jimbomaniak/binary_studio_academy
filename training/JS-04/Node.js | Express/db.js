@@ -1,5 +1,6 @@
 const mongo = require('mongodb').MongoClient;
 const my_db = 'mongodb://skyrocker:test123@ds159892.mlab.com:59892/bsa-js';
+exports.my_db = my_db;
 
 let state = {
     db: null
@@ -31,5 +32,3 @@ exports.close = (done) => {
         })
     }
 };
-
-exports.my_db = my_db;

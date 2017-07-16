@@ -1,14 +1,15 @@
 const router = require('express').Router();
 const userService = require('../services/user');
 
-router.get('/', (req, res) => {
-    let user = userService.findUser(10);
+router.get('/:id', (req, res) => {
+    console.log(req.params.id);
+    let user = userService.findUser(req.params.id);
     user.then((founded) => {
         console.log(founded);
         res.send(founded);
     }).catch((err) => {
         console.log(err);
-        res.status(404).send('Not Found');
+        res.status(404).send('Something went wrong... See the console.log');
     });
 });
 
