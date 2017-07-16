@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 router.post('/create', (req, res) => {
     console.log('Creating...');
     console.log(req.body);
-    // userService.createUser(req.body);
+    userService.createUser(req.body);
     res.send('Maybe created...');
 });
 

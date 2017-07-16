@@ -14,19 +14,21 @@ function findAllUsers() {
     return users.find({}).toArray();
 }
 
-function findUser(id) {
+function findUser(user_id) {
     let users = db.get().collection('users');
-    return users.find({'id': parseInt(id)}).toArray();
+    return users.find({'user_id': parseInt(user_id)}).toArray();
 }
 
-function createUser(name, email="JC@heaven.net", password="imnotexist") {
+function createUser(name) {
     let users = db.get().collection('users');
-    users.insert({id: 0, name: name, email: email, password: password}).then();
+    users.findOne({}, {'sort': [['user_id', 'desc']]}).then((user) => {
+        users.insert({user_id: user.user_id+1, name: name});
+    });
 }
 
-function deleteUser(id) {
+function deleteUser(user_id) {
     let users = db.get().collection('users');
-    users.deleteOne({'id': parseInt(id)}).then();
+    users.deleteOne({'id': parseInt(user_id)}).then();
 }
 
 module.exports = {
