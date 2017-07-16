@@ -1,14 +1,15 @@
 'use strict';
 
-const WRAPPER_CONTENT = document.getElementsByClassName('wrapper__content')[0];
-const HEADER_TAGS_SECTION = document.getElementsByClassName('header__tags-section')[0];
-const FOOTER = document.getElementsByClassName('b-page__footer')[0];
-const SEARCH = document.getElementsByClassName('search__input')[0];
-const FORM = document.getElementsByClassName('search__form');
 const TAG_SELECTED = 'tag_selected';
 const TAG_LIST_SELECTED = 'tags-list__tag_selected';
 
-FORM.onsubmit = (e) => e.preventDefault();
+let wrapper_content = document.getElementsByClassName('wrapper__content')[0];
+let header_tags_section = document.getElementsByClassName('header__tags-section')[0];
+let footer = document.getElementsByClassName('b-page__footer')[0];
+let search = document.getElementsByClassName('search__input')[0];
+let form = document.getElementsByClassName('search__form');
+
+form.onsubmit = (e) => e.preventDefault();
 
 let tagsSet = new Set();
 let savedTags = getSavedTags();
@@ -34,15 +35,15 @@ fetchData.then((posts) => {
     infiniteScroll(posts.data);
 
     let searchDelay = 0;
-    SEARCH.addEventListener('keydown', () => {
+    search.addEventListener('keydown', () => {
         clearTimeout(searchDelay);
-        searchDelay = setTimeout(() => searchPosts(posts.data, SEARCH.value), 200);
+        searchDelay = setTimeout(() => searchPosts(posts.data, search.value), 200);
     });
 });
 
 function rebuildContent(posts) {
-    while (WRAPPER_CONTENT.lastChild) {
-        WRAPPER_CONTENT.removeChild(WRAPPER_CONTENT.lastChild)
+    while (wrapper_content.lastChild) {
+        wrapper_content.removeChild(wrapper_content.lastChild)
     }
     if (!posts.length) {
         noDataFiller();
@@ -72,11 +73,11 @@ function noDataFiller() {
     let filler = document.createElement('h2');
     filler.classList.add('content__filler');
     filler.innerHTML = "No match or no data";
-    WRAPPER_CONTENT.appendChild(filler);
+    wrapper_content.appendChild(filler);
 }
 
 function appendNext(posts) {
-    if (posts.length && isAppearOnScreen(FOOTER)) {
+    if (posts.length && isAppearOnScreen(footer)) {
         createPosts(posts.shift());
     }
 }
@@ -141,7 +142,7 @@ function fetchTagsList(tags) {
 
         headerTags.appendChild(tag);
     }
-    HEADER_TAGS_SECTION.appendChild(headerTags);
+    header_tags_section.appendChild(headerTags);
 }
 
 function createPost(post) {
@@ -185,7 +186,7 @@ function createPost(post) {
     let postDelete = document.createElement('span');
     postDelete.classList.add('data__delete', 'fa', 'fa-close');
     postDelete.addEventListener('click', () => {
-        WRAPPER_CONTENT.removeChild(dataWrapper);
+        wrapper_content.removeChild(dataWrapper);
     });
 
     dataWrapper.appendChild(postImage);
@@ -195,7 +196,7 @@ function createPost(post) {
     dataWrapper.appendChild(postCreated);
     dataWrapper.appendChild(postDelete);
 
-    WRAPPER_CONTENT.appendChild(dataWrapper);
+    wrapper_content.appendChild(dataWrapper);
 }
 
 function createPosts(posts) {
