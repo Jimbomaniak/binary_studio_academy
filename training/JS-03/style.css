@@ -100,9 +100,11 @@ a:hover {
 
 .tags-list__apply {
   margin: auto 5px;
+  cursor: pointer;
 }
 
-.tags-list__apply {
+.tags-list__clear-deletion {
+  margin: auto 5px;
   cursor: pointer;
 }
 

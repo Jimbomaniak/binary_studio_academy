@@ -13,6 +13,7 @@ form.onsubmit = (e) => e.preventDefault();
 
 let tagsSet = new Set();
 let savedTags = getSavedTags();
+let deletedPosts = getDeletedPosts();
 
 let fetchData = fetch('https://api.myjson.com/bins/152f9j')
     .then((response) => {
@@ -142,10 +143,33 @@ function fetchTagsList(tags) {
 
         headerTags.appendChild(tag);
     }
+
+    let clearDeletion = document.createElement('li');
+    clearDeletion.classList.add('tags-list__clear-deletion');
+    clearDeletion.addEventListener('click', () => {
+        localStorage.removeItem('deletedPosts');
+        fetchData.then((posts) => {
+            console.log('INVOKED');
+            console.log(posts.data);
+            rebuildContent(posts.data);
+            console.log('END');
+        })
+    });
+
+    let clearIcon = document.createElement('span');
+    clearIcon.classList.add('fa', 'fa-retweet');
+
+    clearDeletion.appendChild(clearIcon);
+    headerTags.appendChild(clearDeletion);
+
     header_tags_section.appendChild(headerTags);
 }
 
 function createPost(post) {
+    if (deletedPosts.has(post['title'])) {
+        return
+    }
+
     let dataWrapper = document.createElement('div');
     dataWrapper.classList.add('content__data');
 
@@ -186,6 +210,8 @@ function createPost(post) {
     let postDelete = document.createElement('span');
     postDelete.classList.add('data__delete', 'fa', 'fa-close');
     postDelete.addEventListener('click', () => {
+        deletedPosts.add(post['title']);
+        localStorage.setItem('deletedPosts', Array.from(deletedPosts).join('|'));
         wrapper_content.removeChild(dataWrapper);
     });
 
@@ -224,6 +250,15 @@ function getSavedTags() {
     }
 }
 
+function getDeletedPosts() {
+    let deleted = localStorage.getItem('deletedPosts');
+    if (deleted) {
+        return new Set(deleted.split('|'));
+    } else {
+        return new Set();
+    }
+}
+
 function divideArray(arr, chunk = 10) {
     let parted = [];
     for (let step = 0; step < arr.length; step += chunk) {
@@ -242,3 +277,4 @@ function isAppearOnScreen(elem) {
         shape.right <= (window.innerWidth || html.clientWidth)
     );
 }
+
