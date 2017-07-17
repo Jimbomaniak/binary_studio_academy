@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MessApp</title>
+  <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body class="b-page">
+  <div id="enter" class="b-page__enter">
+    <form class="enter__form" onsubmit="return false">
+      <label for="form__name">Name</label>
+      <input id="form__name" placeholder="Enter name">
+      <label for="form__nick">Nickname</label>
+      <input id="form__nick" placeholder="Enter nickname">
+      <input type="submit" value="Enter">
+    </form>
+  </div>
+  <div class="b-page__chat">
+    <header class="chat__header">MessApp</header>
+    <div class="chat__main">
+      <nav class="main__users">
+        <ul class="users__list">
+          <li class="list__user">Max Payne</li>
+          <li class="list__user">Mona Sax</li>
+          <li class="list__user">Baseball Bat-Boy</li>
+        </ul>
+      </nav>
+      <div class="main__messages">
+        <ul class="messages">
+          <li class="message">Max Payne 01.01.66 at 23:59 : Hello</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chat__send-message">
+      <form class="send-message__send-form">
+        <input class="send-form__input" placeholder="Message">
+        <input type="submit" value="Send">
+      </form>
+    </div>
+  </div>
+</body>
+</html>

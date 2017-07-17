@@ -1,0 +1,70 @@
+.b-page__enter {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.b-page__chat {
+  margin: 20px auto;
+  max-width: 720px;
+  text-align: center;
+}
+
+.chat__header {
+  padding: 5px 0 5px 10px;
+  text-align: left;
+  background-color: dodgerblue;
+  font-size: 20px;
+  color: white;
+}
+
+.chat__main {
+  display: flex;
+}
+
+.main__users {
+  min-width: 200px;
+  text-align: left;
+  border: 1px solid black;
+}
+
+.users__list {
+  padding: 5px;
+  margin: 0;
+  list-style-type: none;
+}
+
+.list__user {
+  border-radius: 6px;
+  padding: 6px;
+  margin: 6px 0;
+  background-color: lightblue;
+}
+
+.main__messages {
+  border: 1px solid black;
+  flex-grow: 1;
+}
+
+.messages {
+  margin: 6px;
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+  border: 1px solid black;
+}
+
+.message {
+
+}
+
+.chat__send-message {
+
+}
+
+.send-message__send-form {
+  display: flex;
+}
+
+.send-form__input {
+  width: 100%;
+}
