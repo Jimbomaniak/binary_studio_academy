@@ -14,7 +14,11 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     let user = userService.findUser(req.params.id);
     user.then((founded) => {
-        res.send(founded);
+        if(founded) {
+            res.send(founded);
+        } else {
+            res.send({"Not found": req.params.id})
+        }
     }).catch((err) => {
         console.log(err);
         res.send('Something went wrong... See the console.log');
@@ -22,8 +26,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-    console.log('Creating...');
-    console.log(req.body);
     userService.createUser(req.body);
     res.send('Maybe created...');
 });
@@ -34,8 +36,9 @@ router.delete('/delete/:id', (req, res) => {
     res.send('Maybe deleted...');
 });
 
-router.patch('/update/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
     userService.updateUser(parseInt(req.params.id), req.body);
+    res.send('Maybe updated...');
 });
 
 module.exports = router;

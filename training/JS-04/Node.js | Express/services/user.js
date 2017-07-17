@@ -10,30 +10,39 @@ class User{
 }
 
 function findAllUsers() {
-    let users = db.get().collection('users');
-    return users.find({}).toArray();
+    return db.get().collection('users')
+        .find({})
+        .toArray();
 }
 
 function findUser(user_id) {
-    let users = db.get().collection('users');
-    return users.find({'user_id': parseInt(user_id)}).toArray();
+    return db.get().collection('users')
+        .findOne({
+            'user_id': parseInt(user_id)
+        });
 }
 
 function createUser(name) {
     let users = db.get().collection('users');
     users.findOne({}, {'sort': [['user_id', 'desc']]}).then((user) => {
-        users.insert({user_id: user.user_id+1, name: name});
+        return users.insertOne({user_id: user.user_id+1, name: name});
     });
 }
 
 function deleteUser(user_id) {
-    let users = db.get().collection('users');
-    users.deleteOne({'user_id': parseInt(user_id)}).then();
+    return db.get().collection('users')
+        .deleteOne({
+            'user_id': parseInt(user_id)
+        });
 }
 
-function updateUser(user_id) {
-    let user = db.get().collection('users').find({'user_id': user_id});
-    console.log(user);
+function updateUser(user_id, data) {
+    let users = db.get().collection('users');
+    let user = users.findOne({'user_id': user_id});
+    return users.updateOne(user, {'$set': data}, (err, res) => {
+        console.log(res.result);
+        console.log(user);
+    });
 }
 
 module.exports = {
