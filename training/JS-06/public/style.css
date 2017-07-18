@@ -1,0 +1,112 @@
+.b-page__login {
+  justify-content: center;
+  animation: fadeIn 1s ease-in;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__form * {
+  margin: 2px 0;
+}
+
+.b-page__chat {
+  display: none;
+  margin: 20px auto;
+  max-width: 720px;
+  text-align: center;
+}
+
+.chat__header {
+  display: flex;
+  justify-content: space-between;
+  background-color: dodgerblue;
+  font-size: 20px;
+  color: white;
+}
+
+.header__title, .header__username{
+  margin: 5px 5px;
+}
+
+.chat__main {
+  display: flex;
+}
+
+.main__users {
+  text-align: left;
+  border: 1px solid black;
+}
+
+.users__list {
+  padding: 5px;
+  margin: 0;
+  min-width: 120px;
+  list-style-type: none;
+}
+
+.list__user {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  padding: 6px;
+  margin: 6px 0;
+  background-color: lightblue;
+}
+
+.user__status {
+  background-color: forestgreen;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.main__messages {
+  border: 1px solid black;
+  flex-grow: 1;
+  min-height: 400px;
+}
+
+.messages {
+  margin: 10px;
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.message {
+  margin: 10px auto;
+}
+
+.message:after {
+  content: '';
+  display: block;
+  /*border-bottom: 1px dashed cornflowerblue;*/
+}
+
+.chat__send-message {
+
+}
+
+.send-message__send-form {
+  display: flex;
+}
+
+.send-form__input {
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}

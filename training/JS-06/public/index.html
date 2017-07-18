@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MessApp</title>
+  <link type="text/css" rel="stylesheet" href="./style.css">
+</head>
+<body class="b-page">
+  <div id="enter" class="b-page__login">
+    <form class="login__form">
+      <label for="form__name">Name</label>
+      <input id="form__name" placeholder="Enter name" required>
+      <label for="form__nick">Nickname</label>
+      <input id="form__nick" placeholder="Enter nickname" required>
+      <input type="submit" value="Enter">
+    </form>
+  </div>
+  <div class="b-page__chat">
+    <header class="chat__header">
+      <p class="header__username"></p>
+      <p class="header__title">MessApp</p>
+    </header>
+    <div class="chat__main">
+      <nav class="main__users">
+        <ul class="users__list">
+          <li class="list__user"><span class="user__status"></span>Max Payne</li>
+          <li class="list__user"><span class="user__status"></span>Mona Sax</li>
+          <li class="list__user"><span class="user__status"></span>Baseball Bat-Boy</li>
+        </ul>
+      </nav>
+      <div class="main__messages">
+        <ul class="messages">
+        </ul>
+      </div>
+    </div>
+    <div class="chat__send-message">
+      <form class="send-message__send-form">
+        <input class="send-form__input" placeholder="Message">
+        <input class="send-form__button" type="button" value="Send">
+      </form>
+    </div>
+  </div>
+  <script src="../services/chat_ajax.js"></script>
+</body>
+</html>
