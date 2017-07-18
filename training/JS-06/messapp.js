@@ -36,12 +36,16 @@ app.post('/messages', (req, res) => {
     messages.push(req.body);
 });
 
-db.connect(db.my_db, (err) => {
-    if (err) {
-        console.log('No connection to database');
-    } else {
-        app.listen(4321, () => {
-            console.log('Messapp on port: 4321');
-        })
-    }
+app.listen(4321, () => {
+    console.log('Running on port: 4321');
 });
+
+// db.connect(db.my_db, (err) => {
+//     if (err) {
+//         console.log('No connection to database');
+//     } else {
+//         app.listen(4321, () => {
+//             console.log('Messapp on port: 4321');
+//         })
+//     }
+// });

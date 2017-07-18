@@ -11,7 +11,9 @@
 }
 
 .login__form * {
-  margin: 2px 0;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 4px 0;
 }
 
 .b-page__chat {
@@ -70,6 +72,8 @@
   border: 1px solid black;
   flex-grow: 1;
   min-height: 400px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .messages {
@@ -80,13 +84,13 @@
 }
 
 .message {
+  word-break: break-all;
   margin: 10px auto;
 }
 
 .message:after {
   content: '';
   display: block;
-  /*border-bottom: 1px dashed cornflowerblue;*/
 }
 
 .chat__send-message {

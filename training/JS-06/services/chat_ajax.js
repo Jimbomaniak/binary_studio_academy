@@ -109,6 +109,8 @@ getData();
 setInterval(getData, 1000);
 
 window.onbeforeunload = () => {
-    message.value = 'Left the chat';
-    fetchMessage();
+    if (userName.value && userNick.value) {
+        message.value = 'Left the chat';
+        fetchMessage();
+    }
 };
