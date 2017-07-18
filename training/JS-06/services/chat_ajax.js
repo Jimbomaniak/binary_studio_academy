@@ -8,15 +8,21 @@ let message = document.getElementsByClassName('send-form__input')[0];
 let sendMessage = document.getElementsByClassName('send-form__button')[0];
 let headerUsername = document.getElementsByClassName('header__username')[0];
 
+let date = new Date;
+
 loginForm.onsubmit = (e) => {
     e.preventDefault();
     login();
 };
 sendMessage.parentElement.onsubmit = (e) => {
     e.preventDefault();
+    if (!message.value) {return}
     fetchMessage();
 };
-sendMessage.onclick = fetchMessage;
+sendMessage.onclick = () => {
+    if (!message.value) {return}
+    fetchMessage();
+};
 
 function login() {
     let data = {
@@ -38,8 +44,10 @@ function fetchMessage() {
     let data = {
         name: userNick.value,
         text: message.value,
-        createdAt: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
+        createdAt: date.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
     };
+
+    message.value = '';
 
     ajaxReq({
         method: 'POST',
@@ -47,34 +55,35 @@ function fetchMessage() {
         data: data,
     });
 
-    message.value = '';
 }
 
-function ajaxReq(options) {
-    let xhr = new XMLHttpRequest();
+let ajaxReq = (options) => {
     let url = options.url || '/';
     let method = options.method || 'GET';
-    let callback = options.callback || function() {};
+    let callback = options.callback || function () {};
     let data = options.data || {};
 
+    let xhr = new XMLHttpRequest;
     xhr.open(method, url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(data));
 
     xhr.onreadystatechange = () => {
-        if (xhr.status === 200 && xhr.readyState === 4){
-            callback(xhr.responseText)
+        if (xhr.status === 200 && xhr.readyState === XMLHttpRequest.DONE) {
+            callback(xhr.responseText);
         }
-    }
-}
+    };
+};
 
-let getData = () => {
+function getData() {
     ajaxReq({
         url: '/messages',
         method: 'GET',
         callback: (msg) => {
+            while (messages.hasChildNodes()) {
+                messages.removeChild(messages.firstChild);
+            }
             let msgs = JSON.parse(msg);
-            messages.innerHTML = '';
             for (let msg of msgs) {
                 let el = document.createElement('li');
                 el.classList.add('message');
@@ -83,12 +92,17 @@ let getData = () => {
             }
         },
     });
+};
+
+function getUsers() {
     ajaxReq({
         url: '/users',
         method: 'GET',
         callback: (users) => {
+            while (usersList.hasChildNodes()) {
+                usersList.removeChild(usersList.firstChild);
+            }
             let parsedUsers = JSON.parse(users);
-            usersList.innerHTML = '';
             for (let user of parsedUsers) {
                 let listUser = document.createElement('li');
                 listUser.classList.add('list__user');
@@ -96,20 +110,21 @@ let getData = () => {
                 userStatus.classList.add('user__status');
                 listUser.appendChild(userStatus);
                 let nick = document.createElement('i');
-                nick.innerHTML = user.userNick;
+                nick.innerHTML = `${user.userName} | ${user.userNick}`;
                 listUser.appendChild(nick);
                 usersList.appendChild(listUser);
             }
         }
     })
-};
+}
+setInterval(() => {
+    getUsers();
+    getData();
+}, 1000);
 
-getData();
-
-setInterval(getData, 1000);
 
 window.onbeforeunload = () => {
-    if (userName.value && userNick.value) {
+    if (userName.value) {
         message.value = 'Left the chat';
         fetchMessage();
     }
