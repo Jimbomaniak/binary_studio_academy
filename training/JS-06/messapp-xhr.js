@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'))
+    res.sendFile(path.join(__dirname, '/public/index-xhr.html'))
 });
 
 app.get('/services/chat_ajax.js', (req, res) => {
