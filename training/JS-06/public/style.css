@@ -87,13 +87,11 @@
   margin: 10px auto;
 }
 
-.message:after {
-  content: '';
-  display: block;
+.message_directed {
+  background-color: powderblue;
 }
 
 .chat__send-message {
-
 }
 
 .send-message__send-form {
@@ -101,6 +99,7 @@
 }
 
 .send-form__input {
+  font-size: 20px;
   width: 100%;
 }
 

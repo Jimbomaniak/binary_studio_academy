@@ -20,32 +20,24 @@ app.get('/services/chat_ajax.js', (req, res) => {
     res.sendFile(path.join(__dirname, '/services/chat_ajax.js'))
 });
 
-app.get('/users', (req, res) => {
-    res.json(users);
-});
-
 app.post('/users', (req, res) => {
     users.push(req.body);
 });
 
-app.get('/messages', (req, res) => {
-    res.json(messages);
+app.post('/messages', (req, res) => {
+    if (messages.length > 100) {
+        messages.shift();
+    }
+    messages.push(req.body);
 });
 
-app.post('/messages', (req, res) => {
-    messages.push(req.body);
+app.get('/chat-data', (req, res) => {
+    res.json({
+        users: users,
+        messages: messages,
+    })
 });
 
 app.listen(4321, () => {
     console.log('Running on port: 4321');
 });
-
-// db.connect(db.my_db, (err) => {
-//     if (err) {
-//         console.log('No connection to database');
-//     } else {
-//         app.listen(4321, () => {
-//             console.log('Messapp on port: 4321');
-//         })
-//     }
-// });

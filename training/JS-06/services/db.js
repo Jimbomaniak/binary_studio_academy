@@ -32,7 +32,7 @@ exports.get = () => {
 
 exports.close = (done) => {
     if (state.db) {
-        state.db.close((err, result) => {
+        state.db.close((err) => {
             state.db = null;
             state.mode = null;
             done(err);
@@ -52,3 +52,14 @@ exports.close = (done) => {
 // };
 
 exports.my_db = ('mongodb://skyrocker:js-06@ds161012.mlab.com:61012/js06');
+
+
+// db.connect(db.my_db, (err) => {
+//     if (err) {
+//         console.log('No connection to database');
+//     } else {
+//         app.listen(4321, () => {
+//             console.log('Messapp on port: 4321');
+//         })
+//     }
+// });

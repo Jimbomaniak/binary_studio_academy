@@ -9,6 +9,7 @@ let sendMessage = document.getElementsByClassName('send-form__button')[0];
 let headerUsername = document.getElementsByClassName('header__username')[0];
 
 let date = new Date;
+let xhr = new XMLHttpRequest();
 
 loginForm.onsubmit = (e) => {
     e.preventDefault();
@@ -42,7 +43,7 @@ function login() {
 
 function fetchMessage() {
     let data = {
-        name: userNick.value,
+        nickname: userNick.value,
         text: message.value,
         createdAt: date.toISOString().replace(/T/, ' ').replace(/\..+/, ''),
     };
@@ -57,53 +58,45 @@ function fetchMessage() {
 
 }
 
-let ajaxReq = (options) => {
+function ajaxReq(options) {
     let url = options.url || '/';
     let method = options.method || 'GET';
     let callback = options.callback || function () {};
     let data = options.data || {};
 
-    let xhr = new XMLHttpRequest;
-    xhr.open(method, url, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(JSON.stringify(data));
-
-    xhr.onreadystatechange = () => {
-        if (xhr.status === 200 && xhr.readyState === XMLHttpRequest.DONE) {
+    xhr.onload = () => {
+        if (xhr.status === 200) {
             callback(xhr.responseText);
         }
     };
-};
+    xhr.open(method, url);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(data));
+
+}
 
 function getData() {
     ajaxReq({
-        url: '/messages',
+        url: '/chat-data',
         method: 'GET',
-        callback: (msg) => {
+        callback: (data) => {
             while (messages.hasChildNodes()) {
                 messages.removeChild(messages.firstChild);
             }
-            let msgs = JSON.parse(msg);
-            for (let msg of msgs) {
-                let el = document.createElement('li');
-                el.classList.add('message');
-                el.innerHTML = `${msg.createdAt} ${msg.name}: ${msg.text}`;
-                messages.appendChild(el);
-            }
-        },
-    });
-};
-
-function getUsers() {
-    ajaxReq({
-        url: '/users',
-        method: 'GET',
-        callback: (users) => {
             while (usersList.hasChildNodes()) {
                 usersList.removeChild(usersList.firstChild);
             }
-            let parsedUsers = JSON.parse(users);
-            for (let user of parsedUsers) {
+            let parsed = JSON.parse(data);
+            for (let msg of parsed['messages']) {
+                let el = document.createElement('li');
+                el.classList.add('message');
+                if (msg.text.includes(`@${userNick.value}`)){
+                    el.classList.add('message_directed');
+                }
+                el.innerHTML = `${msg.createdAt} <b>${msg.nickname}</b>: ${msg.text}`;
+                messages.appendChild(el);
+            }
+            for (let user of parsed['users']) {
                 let listUser = document.createElement('li');
                 listUser.classList.add('list__user');
                 let userStatus = document.createElement('span');
@@ -114,14 +107,13 @@ function getUsers() {
                 listUser.appendChild(nick);
                 usersList.appendChild(listUser);
             }
-        }
-    })
+        },
+    });
 }
+
 setInterval(() => {
-    getUsers();
     getData();
 }, 1000);
-
 
 window.onbeforeunload = () => {
     if (userName.value) {
