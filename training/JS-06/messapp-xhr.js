@@ -4,6 +4,14 @@ let bodyParser = require('body-parser');
 let app = express();
 
 let messages = [];
+
+for (let i=0; i < 95; i++){
+    messages.push({
+        nickname: 'Filler',
+        text: `${i}`,
+        createdAt: new Date(),
+    });
+}
 let users = [];
 
 app.use(bodyParser.json());

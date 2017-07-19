@@ -5,6 +5,15 @@ let http = require('http').Server(app);
 let io = require('socket.io')(http);
 
 let messages = [];
+
+for (let i=0; i < 95; i++){
+    messages.push({
+        nickname: 'Filler',
+        text: `${i}`,
+        createdAt: new Date(),
+    });
+}
+
 let users = [];
 
 app.use(express.static(path.join(__dirname, '/public')));
@@ -21,17 +30,20 @@ io.on('connection', (socket) => {
     console.log('Incoming connection');
 
     socket.on('message', (msg) => {
+        if (messages.length > 100) {
+            messages.shift();
+            socket.emit('history', messages);
+        }
         messages.push(msg);
         io.emit('message', msg);
     });
 
     socket.on('login', (usr) => {
         users.push(usr);
-        io.emit('login', usr)
+        socket.emit('history', messages);
+        io.emit('login', usr);
     });
-
     socket.emit('userList', users);
-    socket.emit('history', messages);
 });
 
 io.on('disconnected', () => {
