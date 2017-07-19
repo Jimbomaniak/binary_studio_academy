@@ -90,7 +90,7 @@ function getData() {
             for (let msg of parsed['messages']) {
                 let el = document.createElement('li');
                 el.classList.add('message');
-                if (msg.text.includes(`@${userNick.value}`)){
+                if (msg.text.split(' ').includes(`@${userNick.value}`)){
                     el.classList.add('message_directed');
                 }
                 el.innerHTML = `${msg.createdAt} <b>${msg.nickname}</b>: ${msg.text}`;
