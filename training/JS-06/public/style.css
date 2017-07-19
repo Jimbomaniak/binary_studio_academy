@@ -75,6 +75,10 @@
   height: 500px;
 }
 
+.main__tooltip {
+  display: none;
+}
+
 .messages {
   margin: 10px;
   padding: 0;
