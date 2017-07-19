@@ -76,7 +76,10 @@
 }
 
 .main__tooltip {
-  display: none;
+  position: fixed;
+  align-self: flex-end;
+  padding-left: 4px;
+  padding-bottom: 6px;
 }
 
 .messages {
@@ -93,6 +96,10 @@
 
 .message_directed {
   background-color: powderblue;
+}
+
+.message_user-left {
+  background-color: lightsteelblue;
 }
 
 .chat__send-message {

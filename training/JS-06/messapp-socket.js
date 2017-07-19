@@ -5,16 +5,8 @@ let http = require('http').Server(app);
 let io = require('socket.io')(http);
 
 let messages = [];
-
-for (let i=0; i < 95; i++){
-    messages.push({
-        nickname: 'Filler',
-        text: `${i}`,
-        createdAt: new Date(),
-    });
-}
-
 let users = [];
+let counter = 0;
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -28,6 +20,7 @@ app.get('/services/chat_sock.js', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('Incoming connection');
+    let _id = ++counter;
 
     socket.on('message', (msg) => {
         if (messages.length > 100) {
@@ -39,26 +32,34 @@ io.on('connection', (socket) => {
     });
 
     socket.on('login', (usr) => {
+        usr._id = _id;
         users.push(usr);
         socket.emit('history', messages);
         io.emit('login', usr);
     });
+
+    socket.on('disconnect', () => {
+        let departed = users.find((user) => {
+            return user._id === _id;
+        });
+        users = users.filter((user) => {
+            return user._id !== _id;
+        });
+        io.emit('userLeft', departed);
+        io.emit('userList', users);
+    });
+
     socket.emit('userList', users);
 });
-
-io.on('disconnected', () => {
-    console.log('Disconnected');
-});
-// app.post('/users', (req, res) => {
-//     users.push(req.body);
-// });
-// app.post('/messages', (req, res) => {
-//     if (messages.length > 100) {
-//         messages.shift();
-//     }
-//     messages.push(req.body);
-// });
 
 http.listen(4321, () => {
     console.log('Running on port: 4321');
 });
+
+// for (let i=0; i < 95; i++){
+//     messages.push({
+//         nickname: 'Filler',
+//         text: `${i}`,
+//         createdAt: new Date(),
+//     });
+// }

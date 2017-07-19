@@ -48,48 +48,40 @@ function sendMessage() {
     sock.emit('message', data);
 }
 
+sock.on('message', createMessage);
+
 sock.on('history', (msgs) => {
     while (messages.hasChildNodes()) {
         messages.removeChild(messages.firstChild);
     }
     for (let msg of msgs) {
-        let el = document.createElement('li');
-        el.classList.add('message');
-        if (msg.text.split(' ').includes(`@${userNick.value}`)){
-            el.classList.add('message_directed');
-        }
-        let formattedTime = new Date(msg.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '');
-        el.innerHTML = `${formattedTime} <b>${msg.nickname}</b>: ${msg.text}`;
-        messages.appendChild(el);
+        createMessage(msg);
     }
 });
 
-sock.on('message', (msg) => {
+sock.on('login', newUser);
+
+sock.on('userList', (usrs) => {
+    while (usersList.hasChildNodes()) {
+        usersList.removeChild(usersList.firstChild);
+    }
+    for (let user of usrs) {
+        newUser(user);
+    }
+});
+
+function createMessage(msg) {
     let el = document.createElement('li');
     el.classList.add('message');
     if (msg.text.split(' ').includes(`@${userNick.value}`)){
-        el.classList.add('mesasdsage_directed');
+        el.classList.add('message_directed');
     }
-    let formattedTime = new Date(msg.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '');
-    el.innerHTML = `${formattedTime} <b>${msg.nickname}</b>: ${msg.text}`;
+    let [date, time] = new Date(msg.createdAt).toLocaleString('ru-RU').split(' ');
+    el.innerHTML = `${time} <b>${msg.nickname}</b>: ${msg.text}`;
     messages.appendChild(el);
-});
+}
 
-sock.on('userList', (usrs) => {
-    for (let user of usrs) {
-        let el = document.createElement('li');
-        el.classList.add('list__user');
-        let status = document.createElement('span');
-        status.classList.add('user__status');
-        el.appendChild(status);
-        let nick = document.createElement('i');
-        nick.innerHTML = `${user.userName} | ${user.userNick}`;
-        el.appendChild(nick);
-        usersList.appendChild(el);
-    }
-});
-
-sock.on('login', (user) => {
+function newUser(user) {
     let el = document.createElement('li');
     el.classList.add('list__user');
     let status = document.createElement('span');
@@ -99,6 +91,14 @@ sock.on('login', (user) => {
     nick.innerHTML = `${user.userName} | ${user.userNick}`;
     el.appendChild(nick);
     usersList.appendChild(el);
+}
+
+sock.on('userLeft', (usr) => {
+    let el = document.createElement('li');
+    el.classList.add('message', 'message_user-left');
+    let formattedTime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+    el.innerHTML = `${formattedTime} <b>${usr.userNick}</b> left the chat`;
+    messages.appendChild(el);
 });
 
 function getByClass(cl) {
