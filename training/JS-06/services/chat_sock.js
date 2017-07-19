@@ -1,12 +1,12 @@
-let userName = document.getElementById('form__name');
-let userNick = document.getElementById('form__nick');
-let pageChat = document.getElementsByClassName('b-page__chat')[0];
-let loginForm = document.getElementsByClassName('login__form')[0];
-let usersList = document.getElementsByClassName('users__list')[0];
-let messages = document.getElementsByClassName('messages')[0];
-let message = document.getElementsByClassName('send-form__input')[0];
-let sendButton = document.getElementsByClassName('send-form__button')[0];
-let headerUsername = document.getElementsByClassName('header__username')[0];
+let userName = getById('form__name');
+let userNick = getById('form__nick');
+let pageChat = getByClass('b-page__chat')[0];
+let loginForm = getByClass('login__form')[0];
+let usersList = getByClass('users__list')[0];
+let messages = getByClass('messages')[0];
+let message = getByClass('send-form__input')[0];
+let sendButton = getByClass('send-form__button')[0];
+let headerUsername = getByClass('header__username')[0];
 
 let sock = io.connect();
 
@@ -49,6 +49,9 @@ function sendMessage() {
 }
 
 sock.on('history', (msgs) => {
+    while (messages.hasChildNodes()) {
+        messages.removeChild(messages.firstChild);
+    }
     for (let msg of msgs) {
         let el = document.createElement('li');
         el.classList.add('message');
@@ -97,3 +100,10 @@ sock.on('login', (user) => {
     el.appendChild(nick);
     usersList.appendChild(el);
 });
+
+function getByClass(cl) {
+    return document.getElementsByClassName(cl);
+}
+function getById(_id) {
+    return document.getElementById(_id);
+}
