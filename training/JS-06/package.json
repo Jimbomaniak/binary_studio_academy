@@ -2,7 +2,7 @@
   "name": "messapp",
   "version": "1.0.0",
   "description": "BSA JS-06",
-  "main": "messapp.js",
+  "main": "messapp-xhr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
