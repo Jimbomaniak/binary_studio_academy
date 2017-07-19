@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
 
     socket.on('login', (usr) => {
         users.push(usr);
-        io.emit('login', usr);
+        io.emit('login', usr)
     });
 
     socket.emit('userList', users);
