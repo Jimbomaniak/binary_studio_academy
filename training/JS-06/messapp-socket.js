@@ -37,9 +37,18 @@ io.on('connection', (socket) => {
 
     socket.on('login', (usr) => {
         usr._id = _id;
+        setTimeout(() => {
+            usr.status = 'user__status_online';
+            io.emit('updateStatus', usr);
+        }, 5000);
         users.push(usr);
         socket.emit('history', messages);
         io.emit('login', usr);
+
+    });
+
+    socket.on('setStatus', (data) => {
+        console.log(data);
     });
 
     socket.on('disconnect', () => {
@@ -60,7 +69,8 @@ http.listen(4321, () => {
     console.log('Running on port: 4321');
 });
 
-// for (let i=0; i < 95; i++){
+// --- Over 100 messages test helper ---
+// for (let i=0; i < 99; i++){
 //     messages.push({
 //         nickname: 'Filler',
 //         text: `${i}`,

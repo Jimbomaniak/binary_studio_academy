@@ -1,4 +1,8 @@
-const [ONLINE, OFFLINE] = ['user__status_online', 'user__status_offline'];
+const [ONLINE, OFFLINE, APPEARED] = [
+    'user__status_online',
+    'user__status_offline',
+    'user__status_just-appeared'];
+
 let userName = getById('form__name');
 let userNick = getById('form__nick');
 let pageChat = getByClass('b-page__chat')[0];
@@ -43,7 +47,7 @@ function login() {
         userName: userName.value,
         userNick: userNick.value,
         loggedAt: new Date(),
-        status: ONLINE,
+        status: APPEARED,
     };
     headerUsername.innerHTML = credentials.userName;
     pageChat.style.animation = 'fadeIn 1s ease-in';
@@ -119,6 +123,17 @@ sock.on('userLeft', (usr) => {
             let status = li.firstChild;
             status.classList.remove(ONLINE);
             status.classList.add(OFFLINE);
+            break
+        }
+    }
+});
+
+sock.on('updateStatus', (usr) => {
+    for (let li of usersList.childNodes){
+        if (li.textContent.split(' | ').includes(usr.userNick)) {
+            let status = li.firstChild;
+            status.classList.remove(APPEARED);
+            status.classList.add(ONLINE);
             break
         }
     }

@@ -75,6 +75,10 @@
   background-color: darkred;
 }
 
+.user__status_just-appeared{
+  background-color: royalblue;
+}
+
 .main__messages {
   border: 1px solid black;
   flex-grow: 1;
