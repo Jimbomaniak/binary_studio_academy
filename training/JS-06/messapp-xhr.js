@@ -1,7 +1,8 @@
 let path = require('path');
-let express = require('express');
 let bodyParser = require('body-parser');
+let express = require('express');
 let app = express();
+let http = require('http').Server(app);
 
 let messages = [];
 
@@ -44,6 +45,6 @@ app.get('/chat-data', (req, res) => {
     })
 });
 
-app.listen(4321, () => {
+http.listen(4321, () => {
     console.log('Running on port: 4321');
 });
