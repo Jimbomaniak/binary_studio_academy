@@ -7,7 +7,7 @@ let messages = getByClass('messages')[0];
 let message = getByClass('send-form__input')[0];
 let sendButton = getByClass('send-form__button')[0];
 let headerUsername = getByClass('header__username')[0];
-
+let tooltip = getByClass('main__tooltip')[0];
 let sock = io.connect();
 
 loginForm.onsubmit = (e) => {
@@ -24,6 +24,18 @@ sendButton.onclick = () => {
     if (!message.value) {return}
     sendMessage();
 };
+
+message.onkeypress = (e) => {
+    sock.emit('userTyping', {user: userName.value})
+};
+
+sock.on('typing', (usr) => {
+    tooltip.style.display = 'block';
+    tooltip.innerHTML = `@${usr.user} is typing...`;
+    setTimeout(() => {
+        tooltip.style.display = 'none';
+    }, 2000)
+});
 
 function login() {
     let credentials = {

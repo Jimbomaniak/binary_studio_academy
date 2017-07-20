@@ -31,6 +31,10 @@ io.on('connection', (socket) => {
         io.emit('message', msg);
     });
 
+    socket.on('userTyping', (usr) => {
+        io.emit('typing', usr)
+    });
+
     socket.on('login', (usr) => {
         usr._id = _id;
         users.push(usr);
