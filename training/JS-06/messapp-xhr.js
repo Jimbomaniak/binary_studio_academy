@@ -21,6 +21,7 @@ app.get('/services/chat_ajax.js', (req, res) => {
 
 app.post('/users', (req, res) => {
     users.push(req.body);
+    res.end();
 });
 
 app.post('/messages', (req, res) => {
@@ -28,6 +29,7 @@ app.post('/messages', (req, res) => {
         messages.shift();
     }
     messages.push(req.body);
+    res.end();
 });
 
 app.get('/chat-data', (req, res) => {

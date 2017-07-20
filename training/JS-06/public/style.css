@@ -58,6 +58,8 @@
   padding: 6px;
   margin: 6px 0;
   background-color: lightblue;
+  max-width: 150px;
+  flex-wrap: wrap;
 }
 
 .user__status {

@@ -17,7 +17,9 @@ let sock = io.connect();
 
 loginForm.onsubmit = (e) => {
     e.preventDefault();
-    login();
+    if(validateName(userNick.value)) {
+        login();
+    }
 };
 
 sendButton.parentElement.onsubmit = (e) => {
@@ -144,4 +146,19 @@ function getByClass(cl) {
 }
 function getById(_id) {
     return document.getElementById(_id);
+}
+
+function validateName(name) {
+    if (name.includes(' ')){
+        alert(`Nickname can't have spaces`);
+        return false
+    }
+    for (let user of usersList.childNodes){
+        let nick = user.textContent.split(' | ')[1];
+        if (nick === name) {
+            alert(`Nickname '${name}' already taken`);
+            return false
+        }
+    }
+    return true
 }
