@@ -11,8 +11,18 @@ module.exports = {
     module: {
         rules: [
             {
+                enforce: 'pre',
+                test: /\.css$/,
+                use: 'postcss-loader'
+            },
+            {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                use: 'eslint-loader'
             },
             {
                 test: /\.js$/,
@@ -34,6 +44,6 @@ module.exports = {
     })],
     devServer: {
         inline: true,
-        port: 8081
+        port: 4321
     }
 };
