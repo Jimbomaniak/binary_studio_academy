@@ -19,7 +19,7 @@
 .b-page__chat {
   display: none;
   margin: 20px auto;
-  max-width: 720px;
+  max-width: 920px;
   text-align: center;
 }
 
@@ -42,13 +42,16 @@
 .main__users {
   text-align: left;
   border: 1px solid black;
+  padding-bottom: 25px;
 }
 
 .users__list {
-  padding: 5px;
+  padding: 5px 5px 0 5px;
   margin: 0;
   min-width: 150px;
   list-style-type: none;
+  overflow-y: auto;
+  height: 500px;
 }
 
 .list__user {
@@ -58,7 +61,7 @@
   padding: 6px;
   margin: 6px 0;
   background-color: lightblue;
-  max-width: 150px;
+  max-width: 200px;
   flex-wrap: wrap;
 }
 
@@ -84,8 +87,9 @@
 .main__messages {
   border: 1px solid black;
   flex-grow: 1;
-  overflow-y: scroll;
-  height: 500px;
+  overflow-y: auto;
+  max-height: 530px;
+  min-width: 200px;
 }
 
 .main__tooltip {
@@ -101,10 +105,15 @@
   list-style-type: none;
   text-align: left;
 }
+.messages:nth-child(even) {
 
+}
 .message {
+  width: auto;
   word-break: break-all;
-  margin: 10px auto;
+  padding: 2px;
+  margin: 4px;
+  border-radius: 5px;
 }
 
 .message_directed {
