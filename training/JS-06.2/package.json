@@ -18,6 +18,9 @@
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.4",
+    "eslint": "^4.2.0",
+    "eslint-loader": "^1.9.0",
+    "postcss-loader": "^2.0.6",
     "style-loader": "^0.18.2"
   }
 }
