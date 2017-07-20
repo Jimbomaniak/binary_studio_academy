@@ -105,7 +105,7 @@ function getData() {
                 userStatus.classList.add('user__status_online');
                 listUser.appendChild(userStatus);
                 let nick = document.createElement('i');
-                nick.innerHTML = `${user.userName} | ${user.userNick}`;
+                nick.innerHTML = `${user.userName} @${user.userNick}`;
                 listUser.appendChild(nick);
                 usersList.appendChild(listUser);
             }
@@ -141,7 +141,7 @@ function getById(_id) {
 }
 function validateName(name) {
     for (let user of usersList.childNodes){
-        let nick = user.textContent.split(' | ')[1];
+        let nick = user.textContent.split(' @')[1];
         if (nick === name) {
             alert(`Nickname '${name}' already taken`);
             return false

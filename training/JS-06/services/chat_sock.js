@@ -108,7 +108,7 @@ function newUser(user) {
     status.classList.add('user__status', user.status);
     el.appendChild(status);
     let nick = document.createElement('i');
-    nick.innerHTML = `${user.userName} | ${user.userNick}`;
+    nick.innerHTML = `${user.userName} @${user.userNick}`;
     el.appendChild(nick);
     usersList.appendChild(el);
 }
@@ -121,7 +121,7 @@ sock.on('userLeft', (usr) => {
     messages.appendChild(el);
 
     for (let li of usersList.childNodes){
-        if (li.textContent.split(' | ').includes(usr.userNick)) {
+        if (li.textContent.split(' @').includes(usr.userNick)) {
             let status = li.firstChild;
             status.classList.remove(ONLINE);
             status.classList.add(OFFLINE);
@@ -132,7 +132,7 @@ sock.on('userLeft', (usr) => {
 
 sock.on('updateStatus', (usr) => {
     for (let li of usersList.childNodes){
-        if (li.textContent.split(' | ').includes(usr.userNick)) {
+        if (li.textContent.split(' @').includes(usr.userNick)) {
             let status = li.firstChild;
             status.classList.remove(APPEARED);
             status.classList.add(ONLINE);
@@ -150,7 +150,7 @@ function getById(_id) {
 
 function validateName(name) {
     for (let user of usersList.childNodes){
-        let nick = user.textContent.split(' | ')[1];
+        let nick = user.textContent.split(' @')[1];
         if (nick === name) {
             alert(`Nickname '${name}' already taken`);
             return false
