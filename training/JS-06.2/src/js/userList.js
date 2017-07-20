@@ -1,6 +1,6 @@
-var _ = require('lodash');
+import * as _ from 'lodash'
 
-function userList(users){
+export default function userList(users) {
     const container = document.getElementById('root');
     const sortedUsers = _.sortBy(users, 'age');
     this.showList = () => {
@@ -11,5 +11,3 @@ function userList(users){
         });
     }
 }
-
-module.exports = userList;
