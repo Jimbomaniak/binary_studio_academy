@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
         setTimeout(() => {
             usr.status = 'user__status_online';
             io.emit('updateStatus', usr);
-        }, 5000);
+        }, 60000);
         users.push(usr);
         socket.emit('history', messages);
         io.emit('login', usr);
