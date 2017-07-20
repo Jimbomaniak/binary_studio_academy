@@ -12,8 +12,11 @@ let xhr = new XMLHttpRequest();
 
 loginForm.onsubmit = (e) => {
     e.preventDefault();
-    login();
+    if(validateName(userNick.value)) {
+        login();
+    }
 };
+
 sendButton.parentElement.onsubmit = (e) => {
     e.preventDefault();
     if (!message.value) {return}
@@ -99,7 +102,7 @@ function getData() {
                 let listUser = document.createElement('li');
                 listUser.classList.add('list__user');
                 let userStatus = document.createElement('span');
-                userStatus.classList.add('user__status');
+                userStatus.classList.add('user__status_online');
                 listUser.appendChild(userStatus);
                 let nick = document.createElement('i');
                 nick.innerHTML = `${user.userName} | ${user.userNick}`;
@@ -135,4 +138,14 @@ function getByClass(cl) {
 }
 function getById(_id) {
     return document.getElementById(_id);
+}
+function validateName(name) {
+    for (let user of usersList.childNodes){
+        let nick = user.textContent.split(' | ')[1];
+        if (nick === name) {
+            alert(`Nickname '${name}' already taken`);
+            return false
+        }
+    }
+    return true
 }

@@ -149,10 +149,6 @@ function getById(_id) {
 }
 
 function validateName(name) {
-    if (name.includes(' ')){
-        alert(`Nickname can't have spaces`);
-        return false
-    }
     for (let user of usersList.childNodes){
         let nick = user.textContent.split(' | ')[1];
         if (nick === name) {
