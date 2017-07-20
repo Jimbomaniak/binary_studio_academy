@@ -43,9 +43,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        let departed = users.splice(users.findIndex(user => user._id === _id), 1)[0];
+        let departed = users.find(user => user._id === _id);
+        departed.status = 'user__status_offline';
         io.emit('userLeft', departed);
         io.emit('userList', users);
+    });
+
+    socket.on('track', (data) => {
+        console.log(data);
     });
 
     socket.emit('userList', users);

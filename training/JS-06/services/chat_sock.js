@@ -1,3 +1,4 @@
+const [ONLINE, OFFLINE] = ['user__status_online', 'user__status_offline'];
 let userName = getById('form__name');
 let userNick = getById('form__nick');
 let pageChat = getByClass('b-page__chat')[0];
@@ -42,6 +43,7 @@ function login() {
         userName: userName.value,
         userNick: userNick.value,
         loggedAt: new Date(),
+        status: ONLINE,
     };
     headerUsername.innerHTML = credentials.userName;
     pageChat.style.animation = 'fadeIn 1s ease-in';
@@ -97,7 +99,7 @@ function newUser(user) {
     let el = document.createElement('li');
     el.classList.add('list__user');
     let status = document.createElement('span');
-    status.classList.add('user__status');
+    status.classList.add('user__status', user.status);
     el.appendChild(status);
     let nick = document.createElement('i');
     nick.innerHTML = `${user.userName} | ${user.userNick}`;
@@ -111,6 +113,15 @@ sock.on('userLeft', (usr) => {
     let formattedTime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
     el.innerHTML = `${formattedTime} <b>${usr.userNick}</b> left the chat`;
     messages.appendChild(el);
+
+    for (let li of usersList.childNodes){
+        if (li.textContent.split(' | ').includes(usr.userNick)) {
+            let status = li.firstChild;
+            status.classList.remove(ONLINE);
+            status.classList.add(OFFLINE);
+            break
+        }
+    }
 });
 
 function getByClass(cl) {

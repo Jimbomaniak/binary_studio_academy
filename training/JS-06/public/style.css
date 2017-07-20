@@ -61,11 +61,18 @@
 }
 
 .user__status {
-  background-color: forestgreen;
   margin-right: 5px;
   width: 10px;
   height: 10px;
   border-radius: 10px;
+}
+
+.user__status_online {
+  background-color: forestgreen;
+}
+
+.user__status_offline {
+  background-color: darkred;
 }
 
 .main__messages {
