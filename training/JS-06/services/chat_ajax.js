@@ -115,11 +115,20 @@ setInterval(() => {
 }, 1000);
 
 window.onbeforeunload = () => {
+    beforeLeave();
     if (userName.value) {
         message.value = 'Left the chat';
         fetchMessage();
     }
 };
+
+function beforeLeave() {
+    ajaxReq({
+        url: '/user/del',
+        method: 'DELETE',
+        data: {nick: userNick.value},
+    })
+}
 
 function getByClass(cl) {
     return document.getElementsByClassName(cl);

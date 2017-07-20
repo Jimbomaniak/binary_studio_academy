@@ -5,14 +5,6 @@ let app = express();
 let http = require('http').Server(app);
 
 let messages = [];
-
-for (let i=0; i < 95; i++){
-    messages.push({
-        nickname: 'Filler',
-        text: `${i}`,
-        createdAt: new Date(),
-    });
-}
 let users = [];
 
 app.use(bodyParser.json());
@@ -45,6 +37,19 @@ app.get('/chat-data', (req, res) => {
     })
 });
 
+app.delete('/user/del', (req, res) => {
+    users.splice(users.findIndex(user => user.userNick === req.body.nick), 1);
+});
+
 http.listen(4321, () => {
     console.log('Running on port: 4321');
 });
+
+// --- Over 100 messages test helper ---
+// for (let i=0; i < 99; i++){
+//     messages.push({
+//         nickname: 'Filler',
+//         text: `${i}`,
+//         createdAt: new Date(),
+//     });
+// }
