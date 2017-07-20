@@ -36,11 +36,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('login', (usr) => {
-        usr._id = _id;
         setTimeout(() => {
-            usr.status = 'user__status_online';
-            io.emit('updateStatus', usr);
+            if (usr.status !== 'user__status_online') {
+                usr.status = 'user__status_online';
+                io.emit('updateStatus', usr);
+            }
         }, 60000);
+
+        usr._id = _id;
         users.push(usr);
         socket.emit('history', messages);
         io.emit('login', usr);
@@ -53,13 +56,11 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         let departed = users.find(user => user._id === _id);
-        departed.status = 'user__status_offline';
-        io.emit('userLeft', departed);
+        if (departed) {
+            departed.status = 'user__status_offline';
+            io.emit('userLeft', departed);
+        }
         io.emit('userList', users);
-    });
-
-    socket.on('track', (data) => {
-        console.log(data);
     });
 
     socket.emit('userList', users);
