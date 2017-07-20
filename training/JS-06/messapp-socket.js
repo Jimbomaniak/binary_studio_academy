@@ -39,12 +39,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        let departed = users.find((user) => {
-            return user._id === _id;
-        });
-        users = users.filter((user) => {
-            return user._id !== _id;
-        });
+        let departed = users.splice(users.findIndex(user => user._id === _id), 1)[0];
         io.emit('userLeft', departed);
         io.emit('userList', users);
     });
