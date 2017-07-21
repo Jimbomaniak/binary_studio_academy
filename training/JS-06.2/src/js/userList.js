@@ -9,6 +9,7 @@ export default function userList(users) {
             const div = document.createElement('div');
             const img = document.createElement('img');
             img.src = ava.default;
+            img.classList.add('user__ava');
             div.appendChild(img);
             div.append(`${user.name} ${user.age}`);
             container.appendChild(div);

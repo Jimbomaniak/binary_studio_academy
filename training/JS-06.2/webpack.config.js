@@ -11,18 +11,22 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
                 enforce: 'pre',
                 test: /\.css$/,
                 use: 'postcss-loader'
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            },
-            {
                 enforce: 'pre',
                 test: /\.js$/,
                 use: 'eslint-loader'
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.js$/,
@@ -35,7 +39,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.png$/,
+                test: /\.(jpg|png)$/,
                 use: [
                     'url-loader?limit=10000',
                     'img-loader'
@@ -46,7 +50,13 @@ module.exports = {
     plugins: [new webpack.optimize.UglifyJsPlugin({
         minimize: true,
         compress: {
-            warnings: false
+            warnings: false,
+            sequences: true,
+            join_vars: true,
+        },
+        output: {
+            beautify: false,
+            comments: false,
         }
     })],
     devServer: {

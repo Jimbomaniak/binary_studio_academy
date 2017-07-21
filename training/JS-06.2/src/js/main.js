@@ -1,17 +1,21 @@
 import userList from './userList';
-import '../css/style.css';
+import '../css/style.scss';
 
 const users = [
-    {name: 'Oksana', age: 22},
-    {name: 'Viktor', age: 14},
-    {name: 'Ivan', age: 37},
-    {name: 'Yana', age: 45},
-    {name: 'Oleksandr', age: 19},
-    {name: 'Olena', age: 18},
-    {name: 'Mykola', age: 27},
-    {name: 'Andriy', age: 33},
-    {name: 'Zakhar', age: 40}
+    {name: 'Berezhnoy', age: guessAge()},
+    {name: 'Tovmach', age: guessAge()},
+    {name: 'Rapova', age: guessAge()},
+    {name: 'Akimov', age: guessAge()},
+    {name: 'Kukuruza', age: guessAge()},
+    {name: 'Manukyan', age: guessAge()},
+    {name: 'Kuts', age: guessAge()},
+    {name: 'Satskyi', age: guessAge()},
+    {name: 'Dolynskyi', age: guessAge()}
 ];
 
 let showList = userList(users);
 showList();
+
+function guessAge() { // just flexing around...
+    return Math.floor(Math.random() * (50 - 19) + 19);
+}

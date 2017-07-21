@@ -1,3 +1,7 @@
-.container {
-    color: #3F3F3F;
-}
+body {
+  background: url("../img/star.jpg"); }
+
+.user__ava {
+  width: 20px; }
+
+/*# sourceMappingURL=style.css.map */
