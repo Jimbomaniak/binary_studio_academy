@@ -1,5 +1,5 @@
-import userList from './userList'
-import '../css/style.css'
+import userList from './userList';
+import '../css/style.css';
 
 const users = [
     {name: 'Oksana', age: 22},
@@ -12,6 +12,6 @@ const users = [
     {name: 'Andriy', age: 33},
     {name: 'Zakhar', age: 40}
 ];
-console.log(userList);
-let userListModule = userList(users);
-userListModule.showList();
+
+let showList = userList(users);
+showList();

@@ -2,11 +2,11 @@ let webpack = require('webpack');
 
 module.exports = {
     context: __dirname,
-    devtool: "eval-source-map",
-    entry: "./src/js/main.js",
+    devtool: 'eval-source-map',
+    entry: './src/js/main.js',
     output: {
-        path: __dirname + "/dist",
-        filename: "bundle.js"
+        path: __dirname + '/dist',
+        filename: 'bundle.js'
     },
     module: {
         rules: [
@@ -33,6 +33,13 @@ module.exports = {
                         presets: ['env']
                     }
                 }
+            },
+            {
+                test: /\.png$/,
+                use: [
+                    'url-loader?limit=10000',
+                    'img-loader'
+                ]
             }
         ]
     },
