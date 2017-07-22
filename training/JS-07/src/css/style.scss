@@ -1,20 +1,41 @@
-$userBorderRadius: 10px;
-$avaWidth: 40px;
-$userBackground: rgba(15, 15, 15, 0.8);
+$headerFontSize: 20px;
 
 .container {
-  margin: 5px;
-  background: #C0C0C0;
+  text-align: center;
 }
-.container__user {
+
+.container__header {
+  margin: 20px auto;
+  font-size: $headerFontSize;
+}
+
+.fight__message {
   display: table;
-  border-radius: $userBorderRadius;
+  text-align: center;
+  margin: 5px auto;
   padding: 5px;
-  background: $userBackground;
-  margin: 5px;
-  color: #FFF
+  border-radius: 5px;
+  background: rgba(70, 80, 90, 0.15);
 }
-.user__ava {
-  width: $avaWidth;
-  margin: 5px;
+
+.fight__message:nth-child(odd) {
+  position: relative;
+  right: 200px;
+  background: rgba(90, 80, 70, 0.75);
+  color: #FFFFFF;
+}
+
+.fight__message:nth-child(even) {
+  position: relative;
+  left: 200px;
+}
+
+.fight__message:first-child,
+.fight__message:nth-child(2),
+.fight__message:last-child,
+.fight__message:nth-last-child(2) {
+  background: rgba(70, 80, 90, 0.15);
+  text-align: center;
+  color: #CF0000;
+  position: static;
 }

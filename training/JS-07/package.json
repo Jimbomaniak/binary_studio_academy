@@ -5,11 +5,17 @@
   "main": "./ts/fightClub.ts",
   "dependencies": {},
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
     "css-loader": "^0.28.4",
     "eslint": "^4.3.0",
+    "eslint-loader": "^1.9.0",
+    "loglevel": "^1.4.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "ts-loader": "^2.3.1",
     "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.6.0",
     "webpack-init": "^0.1.2"
   },
   "scripts": {

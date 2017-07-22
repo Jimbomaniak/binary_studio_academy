@@ -1,73 +1,49 @@
-interface IFighter {
-    readonly name: string,
-    health: number,
-    power: number,
-}
+import Fighter from './fighter'
+import ImprovedFighter from './improvedFighter'
 
-class Fighter implements IFighter{
-    name: string;
-    health: number;
-    power: number;
-    constructor(name: string, health: number, power: number){
-        this.name = name;
-        this.health = health;
-        this.power = power;
-    }
+class Fight {
+    static fight(fighter: Fighter, improvedFighter: ImprovedFighter, ...point: number[]){
+        let page: any = (document.getElementsByClassName('container__fight')[0] as HTMLDivElement);
+        Fight._message(`${fighter.toString()} vs ${improvedFighter.toString()}`, page);
+        Fight._message(`Let the fight begin!`, page);
 
-    setDamage(damage: number){
-        this.health -= damage;
-        if (this.health < 0){
-            this.health = 0;
-        }
-        console.log(`${this.name} health: ${this.health}`);
-    }
-
-    hit(enemy: Fighter, point = 1){
-        let damage = this.power * point;
-        enemy.setDamage(damage);
-    }
-
-    toString(){
-        return `Fighter ${this.name} (${this.health})`;
-    }
-}
-
-class ImprovedFighter extends Fighter{
-    doubleHit(enemy: Fighter, point: number = 1){
-        super.hit(enemy, point * 2);
-    }
-
-    toString(){
-        return `Improved fighter ${this.name} (${this.health})`;
-    }
-}
-
-function fight(fighter: Fighter, improvedFighter: ImprovedFighter, ...point: number[]){
-    console.log('Fight!');
-
-    let randomPoint = () => point[Math.floor(Math.random() * point.length)];
-    let doubleDamage = () => Math.round(Math.random());
-
-    while (fighter.health > 0 && improvedFighter.health > 0){
-        fighter.hit(improvedFighter, randomPoint());
-        if (improvedFighter.health > 0){
-            if (doubleDamage()){
-                console.log('Critical hit!');
-                improvedFighter.doubleHit(fighter, randomPoint());
-            } else {
-                improvedFighter.hit(fighter, randomPoint());
+        while (fighter.health > 0 && improvedFighter.health > 0){
+            let hitF = fighter.hit(improvedFighter, Fight._getRandomPoint(point));
+            Fight._message(hitF, page);
+            if (improvedFighter.health > 0){
+                if (Fight._isDouble()){
+                    let hitDD = improvedFighter.doubleHit(fighter, Fight._getRandomPoint(point));
+                    Fight._message(`Critical hit! ${hitDD}`, page);
+                } else {
+                    let hitI = improvedFighter.hit(fighter, Fight._getRandomPoint(point));
+                    Fight._message(`${hitI}`, page);
+                }
             }
         }
+
+        let winner = fighter.health > 0 ? fighter : improvedFighter;
+        Fight._message(`And the winner is ${winner.name}!`, page);
+        Fight._message(`${fighter.toString()} | ${improvedFighter.toString()}`, page);
     }
 
-    let winner = fighter.health > 0 ? fighter : improvedFighter;
-    console.log(`And the winner is ${winner.name}!`);
+    private static _isDouble(): number {
+        return Math.round(Math.random());
+    }
+
+    private static _getRandomPoint(points: number[]): number {
+        return points[Math.floor(Math.random() * points.length)];
+    }
+
+    private static _message(text: string, el: any) {
+        let message = document.createElement('div');
+        message.classList.add('fight__message');
+        message.innerHTML = text;
+        el.appendChild(message);
+    }
 }
 
 let madMax = new Fighter('Mad Max', 100, 1);
-let subZero = new ImprovedFighter('Sub-Zero', 100, 1);
+let subZero  = new ImprovedFighter('Sub-Zero', 100, 1);
 let point = [15, 19, 25, 10, 77, 30, 5, 7];
 
-fight(madMax, subZero, ...point);
-
-console.log(`Results:\n${madMax.toString()}\n${subZero.toString()}`);
+Fight.fight(madMax, subZero, ...point);

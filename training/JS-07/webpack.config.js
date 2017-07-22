@@ -3,7 +3,7 @@ let webpack = require('webpack');
 module.exports = {
     context: __dirname,
     devtool: 'eval-source-map',
-    entry: './src/js/main.js',
+    entry: './src/ts/fightClub.ts',
     output: {
         path: __dirname + '/dist',
         filename: 'bundle.js'
@@ -15,6 +15,10 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
             },
             {
+                test: /\.ts$/,
+                use: 'ts-loader'
+            },
+            {
                 enforce: 'pre',
                 test: /\.js$/,
                 use: 'eslint-loader'
@@ -22,12 +26,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env']
-                    }
-                }
+                use: 'babel-loader'
             },
             {
                 test: /\.(jpg|png)$/,
