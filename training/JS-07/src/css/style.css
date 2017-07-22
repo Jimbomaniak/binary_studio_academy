@@ -1,0 +1,17 @@
+.container {
+  margin: 5px;
+  background: #C0C0C0; }
+
+.container__user {
+  display: table;
+  border-radius: 10px;
+  padding: 5px;
+  background: rgba(15, 15, 15, 0.8);
+  margin: 5px;
+  color: #FFF; }
+
+.user__ava {
+  width: 40px;
+  margin: 5px; }
+
+/*# sourceMappingURL=style.css.map */

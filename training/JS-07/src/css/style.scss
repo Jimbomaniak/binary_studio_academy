@@ -1,0 +1,20 @@
+$userBorderRadius: 10px;
+$avaWidth: 40px;
+$userBackground: rgba(15, 15, 15, 0.8);
+
+.container {
+  margin: 5px;
+  background: #C0C0C0;
+}
+.container__user {
+  display: table;
+  border-radius: $userBorderRadius;
+  padding: 5px;
+  background: $userBackground;
+  margin: 5px;
+  color: #FFF
+}
+.user__ava {
+  width: $avaWidth;
+  margin: 5px;
+}
