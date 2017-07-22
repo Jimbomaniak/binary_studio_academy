@@ -1,8 +1,23 @@
-$back: '../img/star.jpg';
+$back: url('../img/star.jpg');
+$userBorderRadius: 10px;
+$avaWidth: 40px;
+$userBackground: rgba(15, 15, 15, 0.8);
 
 body {
-  background: url('../img/star.jpg');
+  background: $back no-repeat;
+}
+.container {
+  margin: 5px;
+}
+.container__user {
+  display: table;
+  border-radius: $userBorderRadius;
+  padding: 5px;
+  background: $userBackground;
+  margin: 5px;
+  color: #FFF
 }
 .user__ava {
-  width: 20px;
+  width: $avaWidth;
+  margin: 5px;
 }

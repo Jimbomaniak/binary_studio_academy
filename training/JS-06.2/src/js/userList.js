@@ -8,10 +8,13 @@ export default function userList(users) {
         sortedUsers.forEach((user) => {
             const div = document.createElement('div');
             const img = document.createElement('img');
+
             img.src = ava.default;
             img.classList.add('user__ava');
+
             div.appendChild(img);
             div.append(`${user.name} ${user.age}`);
+            div.classList.add('container__user');
             container.appendChild(div);
         });
     };
