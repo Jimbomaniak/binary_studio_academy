@@ -12,21 +12,12 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-            },
-            {
-                enforce: 'pre',
-                test: /\.css$/,
-                use: 'postcss-loader'
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
             },
             {
                 enforce: 'pre',
                 test: /\.js$/,
                 use: 'eslint-loader'
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.js$/,
