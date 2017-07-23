@@ -1,12 +1,10 @@
-$headerFontSize: 20px;
-
 .container {
   text-align: center;
 }
 
 .container__header {
   margin: 20px auto;
-  font-size: $headerFontSize;
+  font-size: 20px;
 }
 
 .fight__message {

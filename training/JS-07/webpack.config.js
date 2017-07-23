@@ -8,15 +8,21 @@ module.exports = {
         path: __dirname + '/dist',
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: [".ts", ".js"],
+        modules: [__dirname + '/src/ts', 'node_modules']
+    },
     module: {
         rules: [
             {
-                test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+                include: __dirname + '/src/css'
             },
             {
                 test: /\.ts$/,
-                use: 'ts-loader'
+                use: 'ts-loader',
+                include: __dirname + '/src/ts'
             },
             {
                 enforce: 'pre',
@@ -25,16 +31,9 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
+                exclude: /node_modules/,
                 use: 'babel-loader'
             },
-            {
-                test: /\.(jpg|png)$/,
-                use: [
-                    'url-loader?limit=100000',
-                    'img-loader'
-                ]
-            }
         ]
     },
     plugins: [new webpack.optimize.UglifyJsPlugin({
