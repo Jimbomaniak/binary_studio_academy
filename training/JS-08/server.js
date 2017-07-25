@@ -1,23 +1,23 @@
-var webpack = require('webpack')
-var webpackDevMiddleware = require('webpack-dev-middleware')
-var webpackHotMiddleware = require('webpack-hot-middleware')
-var config = require('./webpack.config')
+let webpack = require('webpack');
+let webpackDevMiddleware = require('webpack-dev-middleware');
+let webpackHotMiddleware = require('webpack-hot-middleware');
+let config = require('./webpack.config');
 
-var app = new (require('express'))()
-var port = 3000
+let app = new require('express')();
+let port = 3000;
 
-var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
+let compiler = webpack(config);
+app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}));
+app.use(webpackHotMiddleware(compiler));
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + '/index.html')
-})
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
 
 app.listen(4321, (err) => {
     if (err) {
-        console.error(err)
+        console.error(err);
     } else {
-        console.info("App is running on port: 4321")
+        console.info('App is running on port: 4321');
     }
-})
+});

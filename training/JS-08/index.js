@@ -1,8 +1,12 @@
-const blue = {
-    color: '#0000FF'
-}
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-render(
-    (<h1>Welcome to React mf!</h1>)
+const blue = {
+    color: '#0000FF',
+    textAlign: 'center',
+};
+
+ReactDOM.render(
+    (<h1 style={blue}>Welcome to React mf!</h1>)
     , document.getElementById('root')
-)
+);
