@@ -2,13 +2,17 @@ const router = require('express').Router();
 const userService = require('../services/user');
 
 router.get('/', (req, res) => {
-    let users = userService.findAllUsers();
-    users.then((allUsers) => {
-        res.send(allUsers);
-    }).catch((err) => {
-        console.log(err);
-        res.send('Something went wrong... See the console.log');
-    })
+    userService.findAllUsers().then((users) => {
+        console.log(`In routes "/": ${users}`);
+        users.then((allUsers) => {
+            res.send(allUsers);
+        }).catch((err) => {
+            console.log(err);
+            res.status(400);
+            res.send('Something went wrong... See the console.log');
+        });
+        res.send('Find all end');
+    });
 });
 
 router.get('/:id', (req, res) => {
@@ -17,16 +21,28 @@ router.get('/:id', (req, res) => {
         if(founded) {
             res.send(founded);
         } else {
+            res.status(404);
             res.send({"Not found": req.params.id})
         }
     }).catch((err) => {
         console.log(err);
+        res.status(500);
         res.send('Something went wrong... See the console.log');
     });
 });
 
 router.post('/create', (req, res) => {
-    userService.createUser(req.body);
+    userService.createUser(req.body).then((err, ok) => {
+        if (err) {
+            res.status(400);
+            res.send(err);
+        } else {
+            res.send(ok);
+        }
+    }).catch((err) => {
+        res.status(400);
+        res.send(err);
+    });
     res.send('Maybe created...');
 });
 
