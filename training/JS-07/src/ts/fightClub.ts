@@ -3,7 +3,7 @@ import ImprovedFighter from './improvedFighter'
 
 class Fight {
     static fight(fighter: Fighter, improvedFighter: ImprovedFighter, ...point: number[]){
-        let page: any = (document.getElementsByClassName('container__fight')[0] as HTMLDivElement);
+        let page: HTMLElement = (document.getElementsByClassName('container__fight')[0] as HTMLDivElement);
         Fight._message(`${fighter.toString()} vs ${improvedFighter.toString()}`, page);
         Fight._message(`Let the fight begin!`, page);
 
@@ -34,7 +34,7 @@ class Fight {
         return points[Math.floor(Math.random() * points.length)];
     }
 
-    private static _message(text: string, el: any) {
+    private static _message(text: string, el: HTMLElement) {
         let message = document.createElement('div');
         message.classList.add('fight__message');
         message.innerHTML = text;
