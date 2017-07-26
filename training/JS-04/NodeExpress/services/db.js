@@ -1,7 +1,7 @@
 const client = require('mongodb').MongoClient;
 const dbURL = 'mongodb://skyrocker:test123@ds159892.mlab.com:59892/bsa-js';
 
-let connect = () => {
+let connect = function* () {
     console.log('YIELD CONNECT');
     let db = yield client.connect(dbURL);
     db.close();
