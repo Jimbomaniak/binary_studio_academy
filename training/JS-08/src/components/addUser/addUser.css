@@ -1,0 +1,6 @@
+.content__add-user {
+  display: flex;
+  padding: 10px 0;
+  justify-content: space-around;
+  border: 1px solid #6495ED;
+}
