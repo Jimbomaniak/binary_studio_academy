@@ -3,15 +3,14 @@ let webpack = require('webpack');
 module.exports = {
     context: __dirname,
     devtool: 'eval-source-map',
-    entry: './index.js',
+    entry: './src/index.js',
     output: {
         path: __dirname + '/dist',
         filename: 'bundle.js',
         publicPath: '/static/'
     },
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.optimize.OccurrenceOrderPlugin()
     ],
     module: {
         loaders: [

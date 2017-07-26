@@ -1,0 +1,11 @@
+#app {
+  width: 300px;
+  min-height: 200px;
+  margin: 0 auto;
+  border: 1px solid #6495ED;
+}
+
+.app__header {
+  color: #0F0FFF;
+  text-align: center;
+}
