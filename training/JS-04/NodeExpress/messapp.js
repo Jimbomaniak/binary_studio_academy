@@ -8,12 +8,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 const routes = require('./routes/routes')(app);
 
-db.connect().then((err) => {
-    if (err) {
+db.connect().then((res, rej) => {
+    if (rej) {
         console.log('No connection to database');
     } else {
         app.listen(4321, () => {
             console.log('Messapp on port: 4321');
-        })
+        });
     }
 });
