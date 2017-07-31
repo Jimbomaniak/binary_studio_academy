@@ -16,9 +16,7 @@ let get = () => {
 
 let close = () => {
     connect.close((err) => {
-        if (err) {
-            console.log(err);
-        }
+        assert(null, err);
     })
 };
 
