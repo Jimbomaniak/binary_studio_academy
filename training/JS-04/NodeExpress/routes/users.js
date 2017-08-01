@@ -31,18 +31,27 @@ router.post('/create', (req, res) => {
 });
 
 router.delete('/delete/:id', (req, res) => {
-    console.log(`Deleting ${req.params.id}`);
-    userService.deleteUser(req.params.id);
-    res.send('Maybe deleted...');
+    let id = req.params.id;
+    userService.deleteUser(id).then((r) => {
+        if (r.deletedCount) {
+            res.send(`User ${id} deleted`)
+        } else {
+            res.status(404).send(`User ${id} not found`)
+        }
+    }).catch((err) => {
+        res.status(500).send(err)
+    });
 });
 
 router.patch('/:id', (req, res) => {
-    try {
-        userService.updateUser(parseInt(req.params.id), req.body.nickname);
-    } catch (err) {
-        res.status(500).send(err);
-    }
-    res.send(`User ${req.params.id} update nickname to '${req.body.nickname}'`)
+    let [id, name] = [req.params.id, req.body.nickname];
+    userService.updateUser(parseInt(id), name).then((r) => {
+        if (r.value.nickname === name){
+            res.send(`User ${id} update nickname to '${name}'`)
+        }
+    }).catch((err) => {
+        res.status(404).send(`User ${id} not found`);
+    });
 });
 
 module.exports = router;

@@ -2,41 +2,43 @@ const db = require('./db');
 const assert = require('assert');
 
 exports.findAllUsers = () => {
-    return db.get().collection('users').find().toArray();
+    return db.get().collection('users').find({}, {fields: {_id: 0}}).toArray();
 };
 
-exports.findUser = (user_id) => {
-    return db.get().collection('users').findOne({'user_id': parseInt(user_id)});
+exports.findUser = (id) => {
+    return db.get().collection('users').findOne(
+        {'id': parseInt(id)},
+        {fields: {_id: 0}}
+    );
 };
 
 exports.createUser = (name) => {
     let users = db.get().collection('users');
-    return users.findOne({}, {'sort': [['user_id', 'desc']]})
-        .then((user) => user.user_id)
+    return users.findOne({}, {'sort': [['id', 'desc']]})
+        .then((user) => user.id)
         .then((lastId) => {
-            users.insertOne({user_id: lastId + 1, nickname: name}, (err, r) => {
-                assert.equal(null, err);
-                assert.equal(1, r.insertedCount)
+            users.insertOne({id: lastId + 1, nickname: name}, (err, r) => {
+                try {
+                    assert.equal(null, err);
+                    assert.equal(1, r.insertedCount)
+                } catch (err) {
+                    console.log(err);
+                    console.log(r);
+                }
             })
         })
         .catch((err) => console.log(err));
 };
 
-exports.deleteUser = (user_id) => {
-    return db.get().collection('users')
-        .deleteOne({
-            'user_id': parseInt(user_id)
-        });
+exports.deleteUser = (id) => {
+    return db.get().collection('users').deleteOne({'id': parseInt(id)});
 };
 
-exports.updateUser = (user_id, name) => {
-    let users = db.get().collection('users');
-    users.findOneAndUpdate(
-        {'user_id': user_id},
+exports.updateUser = (id, name) => {
+    return db.get().collection('users').findOneAndUpdate(
+        {'id': id},
         {'$set': {nickname: name}},
-        {returnOriginal: false},
-        (err, r) => {
-            assert.equal(null, err);
-            assert.equal(name, r.value.nickname);
-    });
+        {returnOriginal: false})
+        .then((r) => r)
+        .catch((err) => err);
 };
