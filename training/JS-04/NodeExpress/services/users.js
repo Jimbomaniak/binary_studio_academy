@@ -12,6 +12,19 @@ exports.findUser = (id) => {
     );
 };
 
+exports.findChatterers = (id) => {
+    return db.get().collection('messages').find(
+        {'senderId': parseInt(id)},
+        {fields: {_id: 0}}
+    ).toArray().then((messages) => {
+        let chatterers = messages.map((m) => m.receiverId);
+        return db.get().collection('users').find(
+            {'id': {$in: chatterers}},
+            {fields: {_id: 0, email: 0}}
+        ).toArray()
+    })
+};
+
 exports.createUser = (name) => {
     let users = db.get().collection('users');
     return users.findOne({}, {'sort': [['id', 'desc']]})

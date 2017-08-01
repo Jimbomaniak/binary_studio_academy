@@ -22,6 +22,15 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/chatterers/:id', (req, res) => {
+    let id = req.params.id;
+    userService.findChatterers(id).then((chatterers) => {
+        res.send(chatterers)
+    }).catch((err) => {
+        res.status(500).send(err);
+    });
+});
+
 router.post('/create', (req, res) => {
     userService.createUser(req.body.nickname).then(() => {
         res.send(`${req.body.nickname} created`);
