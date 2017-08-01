@@ -1,0 +1,180 @@
+{
+	"variables": [],
+	"info": {
+		"name": "JS-04",
+		"_postman_id": "63ea404c-afc5-d053-4c75-36ce15a93dbe",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "messages",
+			"description": "",
+			"item": [
+				{
+					"name": "create message",
+					"request": {
+						"url": "http://localhost:4321/api/messages/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"senderId\": 1,\n\t\"receiverId\": 2,\n\t\"text\": \"May the force be with you...\"\n}"
+						},
+						"description": "Create new message"
+					},
+					"response": []
+				},
+				{
+					"name": "delete message",
+					"request": {
+						"url": "http://localhost:4321/api/messages/delete/66",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Delete message by id"
+					},
+					"response": []
+				},
+				{
+					"name": "edit message",
+					"request": {
+						"url": "http://localhost:4321/api/messages/1",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"Give a man a fish, he'll eat for a day, teach a man to force choke, and others will fish for him\"\n}"
+						},
+						"description": "Update existing message text"
+					},
+					"response": []
+				},
+				{
+					"name": "messages list",
+					"request": {
+						"url": "localhost:4321/api/messages",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "List of all messages"
+					},
+					"response": []
+				},
+				{
+					"name": "get messages by text",
+					"request": {
+						"url": "localhost:4321/api/messages/text/force",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get all messages that includes word 'force'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"description": "",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"url": "http://localhost:4321/api/users/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Sub-Zero\"\n}"
+						},
+						"description": "Create new user"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"url": "http://localhost:4321/api/users/delete/66",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Delete user by id"
+					},
+					"response": []
+				},
+				{
+					"name": "edit nickname",
+					"request": {
+						"url": "http://localhost:4321/api/users/13",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nickname\": \"Kopperfield\"\n}"
+						},
+						"description": "Update existing user nickname"
+					},
+					"response": []
+				},
+				{
+					"name": "users list",
+					"request": {
+						"url": "http://localhost:4321/api/users/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get all users"
+					},
+					"response": []
+				},
+				{
+					"name": "get user",
+					"request": {
+						"url": "http://localhost:4321/api/users/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get user by id"
+					},
+					"response": []
+				},
+				{
+					"name": "get chatterers",
+					"request": {
+						"url": "localhost:4321/api/users/chatterers/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get list of users that user 1 chatted with"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
